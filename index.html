@@ -4,11 +4,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StartUp Co.</title>
+    <meta name="description"
+        content="İstanbul merkezli yazılım girişimi. Web geliştirme, mobil uygulama, SEO ve UI/UX tasarım alanlarında end-to-end dijital çözümler." />
+    <meta name="keywords"
+        content="web geliştirme, mobil uygulama, react, next.js, SEO, UI/UX, İstanbul, yazılım ajansı" />
+    <meta name="author" content="StartUp Co." />
+    <meta property="og:title" content="StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz" />
+    <meta property="og:description"
+        content="İstanbul merkezli genç ve tutkulu yazılım girişimi. Web, mobil, SEO ve tasarım alanlarında projelerinizi hayata geçiriyoruz." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://startupco.com.tr" />
+    <meta property="og:image" content="https://startupco.com.tr/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz" />
+    <meta name="twitter:description" content="İstanbul merkezli yazılım girişimi. Web, mobil, SEO ve UI/UX." />
+    <title>StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
         rel="stylesheet" />
-
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -17,15 +30,19 @@
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
 
+    <!-- NAV -->
     <nav>
         <a class="nav-logo" href="#hero"><span>{</span> startUp <span>}</span></a>
         <div class="nav-right">
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
                 <li><a href="#projects" data-i18n="nav_projects">Projeler</a></li>
                 <li><a href="#skills" data-i18n="nav_services">Hizmetler</a></li>
                 <li><a href="#contact" data-i18n="nav_contact">İletişim</a></li>
             </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('tr')">TR</button>
                 <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -33,9 +50,11 @@
         </div>
     </nav>
 
+    <!-- HERO -->
     <section id="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-grid">
+
             <div>
                 <p class="hero-label" data-i18n="hero_label">— İstanbul merkezli yazılım girişimi</p>
                 <h1 class="hero-name" data-i18n="hero_title">Fikirleri<br>Ürüne<br>Dönüştürüyoruz<span
@@ -50,21 +69,20 @@
 
             <div class="hero-terminal" id="hero-terminal">
                 <div class="terminal-bar">
-                    <div class="dot dot-r" id="btn-close" title="Kapat"></div>
-                    <div class="dot dot-y" id="btn-minimize" title="Küçült"></div>
-                    <div class="dot dot-g" id="btn-expand" title="Genişlet"></div>
+                    <div class="dot dot-r" id="btn-close" data-tip="kapat"></div>
+                    <div class="dot dot-y" id="btn-minimize" data-tip="küçült"></div>
+                    <div class="dot dot-g" id="btn-expand" data-tip="genişlet"></div>
                     <span class="terminal-file" id="terminal-filename">company.json</span>
                 </div>
-
                 <div class="terminal-body" id="terminal-body">
                     <span id="terminal-typed"></span><span class="t-cursor" id="terminal-cursor"></span>
                 </div>
-
                 <div class="terminal-minimized" id="terminal-minimized" style="display:none;">
-                    <span class="t-comment">$</span> <span class="t-str">StartUp Co.</span> <span class="t-comment">—
-                        İstanbul, 2024 — müsait:</span> <span class="t-bool">true</span><span class="t-cursor"></span>
+                    <span class="t-comment">$</span>
+                    <span class="t-str">StartUp Co.</span>
+                    <span class="t-comment">— İstanbul, 2024 — müsait:</span>
+                    <span class="t-bool">true</span><span class="t-cursor"></span>
                 </div>
-
                 <div class="terminal-expanded" id="terminal-expanded" style="display:none;">
                     <div class="terminal-expanded-body">
                         <span id="story-typed"></span><span class="t-cursor"></span>
@@ -82,13 +100,14 @@
                     <button class="tc-reopen" id="btn-reopen">↩ şirket profilimiz</button>
                 </div>
             </div>
+
         </div>
     </section>
 
+    <!-- HAKKIMIZDA -->
     <section id="about">
         <div class="section-inner">
             <div class="about-grid">
-
                 <div class="about-visual">
                     <canvas id="particle-canvas"></canvas>
                 </div>
@@ -119,17 +138,16 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- PROJELER -->
     <section id="projects">
         <div class="section-inner">
             <p class="section-tag reveal" data-i18n="proj_tag">Projeler</p>
             <h2 class="section-title reveal" data-i18n="proj_title">Ürettiklerimiz</h2>
             <p class="section-sub reveal" data-i18n="proj_sub">Müşterilerimiz için geliştirdiğimiz bazı projeler.</p>
-
             <div class="projects-grid">
 
                 <div class="project-card reveal">
@@ -145,10 +163,8 @@
                     <p class="project-desc" data-i18n="p1_desc">React ve Node.js ile geliştirilen tam kapsamlı bir
                         e-ticaret platformu. Ödeme entegrasyonu, stok yönetimi ve gerçek zamanlı bildirimler.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">Stripe</span>
+                        <span class="tag">React</span><span class="tag">Node.js</span>
+                        <span class="tag">PostgreSQL</span><span class="tag">Stripe</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">↗ Demo</a>
@@ -170,10 +186,8 @@
                     <p class="project-desc" data-i18n="p2_desc">Gerçek zamanlı veri görselleştirmesi yapan bir analitik
                         paneli. WebSocket ile canlı güncelleme, D3.js ile etkileşimli grafikler.</p>
                     <div class="project-tags">
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">D3.js</span>
-                        <span class="tag">WebSocket</span>
-                        <span class="tag">Redis</span>
+                        <span class="tag">TypeScript</span><span class="tag">D3.js</span>
+                        <span class="tag">WebSocket</span><span class="tag">Redis</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">↗ Demo</a>
@@ -201,10 +215,8 @@
                     <p class="project-desc" data-i18n="p3_desc">OpenAI entegrasyonu ile oluşturulan akıllı asistan
                         API'ı. Rate limiting, caching ve kullanıcı oturum yönetimi içeriyor.</p>
                     <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">OpenAI</span>
-                        <span class="tag">Docker</span>
+                        <span class="tag">Python</span><span class="tag">FastAPI</span>
+                        <span class="tag">OpenAI</span><span class="tag">Docker</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">↗ Demo</a>
@@ -216,6 +228,7 @@
         </div>
     </section>
 
+    <!-- HİZMETLER -->
     <section id="skills">
         <div class="section-inner">
             <p class="section-tag reveal" data-i18n="svc_tag">Nasıl Çalışıyoruz?</p>
@@ -260,8 +273,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <div class="section-divider reveal">
                 <span class="section-divider-text" data-i18n="svc_sub">Teknik Yetkinliklerimiz</span>
@@ -411,6 +422,71 @@
         </div>
     </section>
 
+    <!-- GITHUB REPOS -->
+    <section id="github-repos">
+        <div class="section-inner">
+            <p class="section-tag reveal" data-i18n="github_tag">GitHub</p>
+            <h2 class="section-title reveal" data-i18n="github_title">Açık Kaynak Projelerimiz</h2>
+            <p class="section-sub reveal" data-i18n="github_sub">GitHub üzerindeki herkese açık repolarımız.</p>
+            <div class="github-repos-grid">
+
+                <a href="https://github.com/omersaklikaya/startup-hooks" target="_blank" rel="noopener"
+                    class="github-repo-card reveal">
+                    <div class="github-repo-header">
+                        <div class="github-repo-name">startup-hooks</div>
+                        <div class="github-repo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="github-repo-desc">React projelerinde sıkça ihtiyaç duyulan custom hook koleksiyonu.
+                        useDebounce, useLocalStorage, useFetch ve daha fazlası — sıfır bağımlılık, TypeScript
+                        desteğiyle.</div>
+                    <div class="github-repo-meta">
+                        <span>
+                            <div class="github-repo-lang-dot" style="background:#3178c6;"></div> TypeScript
+                        </span>
+                        <span>↗ github.com</span>
+                    </div>
+                </a>
+
+                <div class="github-repo-card reveal github-repo-soon">
+                    <div class="github-repo-header">
+                        <div class="github-repo-name">yakında<span class="repo-soon-cursor">_</span></div>
+                        <div class="github-repo-icon" style="opacity:0.3;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="github-repo-desc" style="color:var(--border);">Yeni bir açık kaynak proje geliyor...
+                    </div>
+                    <div class="github-repo-meta" style="opacity:0.3;"><span>coming soon</span></div>
+                </div>
+
+                <div class="github-repo-card reveal github-repo-soon">
+                    <div class="github-repo-header">
+                        <div class="github-repo-name">yakında<span class="repo-soon-cursor">_</span></div>
+                        <div class="github-repo-icon" style="opacity:0.3;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="github-repo-desc" style="color:var(--border);">Yeni bir açık kaynak proje geliyor...
+                    </div>
+                    <div class="github-repo-meta" style="opacity:0.3;"><span>coming soon</span></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- İLETİŞİM -->
     <section id="contact">
         <div class="section-inner">
             <div class="contact-grid">
@@ -469,23 +545,23 @@
                     <div class="contact-form-inner" id="contact-form-box">
                         <div class="cf-row cf-row-2">
                             <div class="cf-field">
-                                <label class="cf-label" data-i18n="form_name">Adınız</label>
+                                <label class="cf-label" for="cf-name" data-i18n="form_name">Adınız</label>
                                 <input class="cf-input" id="cf-name" type="text" placeholder="Ada Lovelace"
                                     autocomplete="off" />
                             </div>
                             <div class="cf-field">
-                                <label class="cf-label" data-i18n="form_email">E-posta</label>
+                                <label class="cf-label" for="cf-email" data-i18n="form_email">E-posta</label>
                                 <input class="cf-input" id="cf-email" type="email" placeholder="ada@ornek.com"
                                     autocomplete="off" />
                             </div>
                         </div>
                         <div class="cf-field">
-                            <label class="cf-label" data-i18n="form_subject">Konu</label>
+                            <label class="cf-label" for="cf-subject" data-i18n="form_subject">Konu</label>
                             <input class="cf-input" id="cf-subject" type="text" placeholder="Proje fikri, teklif..."
                                 autocomplete="off" />
                         </div>
                         <div class="cf-field">
-                            <label class="cf-label" data-i18n="form_message">Mesajınız</label>
+                            <label class="cf-label" for="cf-message" data-i18n="form_message">Mesajınız</label>
                             <textarea class="cf-input cf-textarea" id="cf-message"
                                 placeholder="Projeniz hakkında kısaca bilgi verin..."></textarea>
                         </div>
@@ -505,14 +581,17 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
+
             <div class="footer-col footer-brand">
                 <a class="footer-logo" href="#hero"><span>{</span> startUp <span>}</span></a>
                 <p class="footer-desc" data-i18n="footer_desc">İstanbul merkezli, genç ve tutkulu bir yazılım girişimi.
                     Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.</p>
                 <div class="footer-social">
-                    <a href="https://github.com" target="_blank" class="footer-social-link" aria-label="GitHub">
+                    <a href="https://github.com/omersaklikaya" target="_blank" class="footer-social-link"
+                        aria-label="GitHub">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path
                                 d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
@@ -539,7 +618,6 @@
                 <ul class="footer-links">
                     <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
                     <li><a href="#projects" data-i18n="nav_projects">Projeler</a></li>
-                    <li><a href="#github-repos" data-i18n="github_tag">GitHub</a></li>
                     <li><a href="#skills" data-i18n="nav_services">Hizmetler</a></li>
                     <li><a href="#contact" data-i18n="nav_contact">İletişim</a></li>
                 </ul>
@@ -582,11 +660,11 @@
                     </li>
                 </ul>
             </div>
-        </div>
 
+        </div>
         <div class="footer-bottom">
             <span data-i18n="footer_copy">© 2025 StartUp Co. — Tüm hakları saklıdır.</span>
-            <span class="footer-made" data-i18n="footer_made">İstanbul'dan 🖤 ile yapıldı</span>
+            <span class="footer-heart">Made with 🖤 from İstanbul</span>
         </div>
     </footer>
 
