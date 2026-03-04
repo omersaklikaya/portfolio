@@ -1,32 +1,513 @@
-// ─── ORBIT ANİMASYONU ────────────────────────────────────────────────────────
-const orbitCfg = [
-  { id: 'on0', ring: 95,  speed: 22000,  startDeg: 0   },
-  { id: 'on1', ring: 95,  speed: 22000,  startDeg: 90  },
-  { id: 'on2', ring: 95,  speed: 22000,  startDeg: 180 },
-  { id: 'on3', ring: 95,  speed: 22000,  startDeg: 270 },
-  { id: 'on4', ring: 150, speed: -34000, startDeg: 30  },
-  { id: 'on5', ring: 150, speed: -34000, startDeg: 150 },
-  { id: 'on6', ring: 150, speed: -34000, startDeg: 270 },
+// ─── TERMINAL BUTONLARI ───────────────────────────────────────────────────────
+const storyLines = [
+  { html: `<span class="t-comment">// startup.log — 2024, İstanbul</span>` },
+  { html: `` },
+  { html: `<span class="t-key">"başlangıç"</span>: <span class="t-str">"Bir masada, iki ekran, sonsuz fikir."</span>` },
+  { html: `<span class="t-key">"inanç"</span>  : <span class="t-str">"Her büyük ürün cesur bir adımla başlar."</span>` },
+  { html: `<span class="t-key">"hedef"</span>  : <span class="t-str">"İstanbul'dan dünyaya — bir proje, bir adım."</span>` },
+  { html: `` },
+  { html: `<span class="t-comment">// Müşterilerimize sadece yazılım değil,</span>` },
+  { html: `<span class="t-comment">// dijital kimlik ve büyüme veriyoruz.</span>` },
+  { html: `` },
+  { html: `<span class="t-bool">// şimdi sıra sizin fikrinizde.</span>` },
 ];
-const cx = 160, cy = 160;
 
-function animateOrbits() {
-  const t = Date.now();
-  orbitCfg.forEach(cfg => {
-    const el = document.getElementById(cfg.id);
-    if (!el) return;
-    const deg = cfg.startDeg + (t / Math.abs(cfg.speed)) * 360 * Math.sign(cfg.speed);
-    const rad = deg * Math.PI / 180;
-    const x = cx + Math.cos(rad) * cfg.ring;
-    const y = cy + Math.sin(rad) * cfg.ring;
-    el.style.left = x + 'px';
-    el.style.top  = y + 'px';
-    el.querySelector('.orbit-node-inner').style.transform =
-      `rotate(${-deg + cfg.startDeg}deg) rotate(${deg - cfg.startDeg}deg)`;
+(function initTerminalButtons() {
+  const terminal    = document.getElementById('hero-terminal');
+  const closed      = document.getElementById('terminal-closed');
+  const bodyEl      = document.getElementById('terminal-body');
+  const minimized   = document.getElementById('terminal-minimized');
+  const expanded    = document.getElementById('terminal-expanded');
+  const filename    = document.getElementById('terminal-filename');
+  const btnClose    = document.getElementById('btn-close');
+  const btnMinimize = document.getElementById('btn-minimize');
+  const btnExpand   = document.getElementById('btn-expand');
+  const btnReopen   = document.getElementById('btn-reopen');
+
+  if (!terminal || !btnClose) return;
+
+  // State: 'normal' | 'minimized' | 'expanded' | 'closed'
+  let state = 'normal';
+  let storyTyping = false;
+
+  function setState(s) {
+    state = s;
+    // Hepsini gizle
+    bodyEl.style.display     = 'none';
+    minimized.style.display  = 'none';
+    expanded.style.display   = 'none';
+    terminal.style.display   = '';
+    closed.style.display     = 'none';
+    terminal.classList.remove('state-expanded');
+
+    if (s === 'normal') {
+      bodyEl.style.display = '';
+      filename.textContent = 'company.json';
+    } else if (s === 'minimized') {
+      minimized.style.display = '';
+      filename.textContent = 'company.json — minimized';
+    } else if (s === 'expanded') {
+      expanded.style.display = '';
+      terminal.classList.add('state-expanded');
+      filename.textContent = 'startup.log';
+      if (!storyTyping) typeStory();
+    } else if (s === 'closed') {
+      terminal.style.display = 'none';
+      closed.style.display   = '';
+    }
+  }
+
+  // Sarı: normal ↔ minimized toggle
+  btnMinimize.addEventListener('click', () => {
+    setState(state === 'minimized' ? 'normal' : 'minimized');
   });
-  requestAnimationFrame(animateOrbits);
-}
-animateOrbits();
+
+  // Kırmızı: kapat
+  btnClose.addEventListener('click', () => setState('closed'));
+
+  // Yeniden aç
+  btnReopen.addEventListener('click', () => setState('normal'));
+
+  // Yeşil: normal ↔ expanded toggle
+  btnExpand.addEventListener('click', () => {
+    setState(state === 'expanded' ? 'normal' : 'expanded');
+  });
+
+  // Hikaye typewriter
+  async function typeStory() {
+    storyTyping = true;
+    const container = document.getElementById('story-typed');
+    if (!container) return;
+    container.innerHTML = '';
+
+    for (let i = 0; i < storyLines.length; i++) {
+      const line = storyLines[i];
+      if (state !== 'expanded') { storyTyping = false; return; }
+
+      if (line.html === '') {
+        container.insertAdjacentHTML('beforeend', '<br>');
+        await new Promise(r => setTimeout(r, 20));
+        continue;
+      }
+
+      // Düz metin olarak yaz
+      const rawText = line.html.replace(/<[^>]+>/g, '');
+      const tempSpan = document.createElement('span');
+      container.appendChild(tempSpan);
+
+      for (let c = 0; c < rawText.length; c++) {
+        if (state !== 'expanded') { storyTyping = false; return; }
+        tempSpan.textContent += rawText[c];
+        await new Promise(r => setTimeout(r, 12));
+      }
+      tempSpan.outerHTML = line.html;
+      container.insertAdjacentHTML('beforeend', '<br>');
+      await new Promise(r => setTimeout(r, 25));
+    }
+    storyTyping = false;
+  }
+})();
+
+// ─── HERO PARTICLE NETWORK ───────────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const ACCENT  = '126,255,178';
+  const ACCENT2 = '94,155,255';
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); initParticles(); });
+
+  let mouse = { x: -9999, y: -9999 };
+  // hero section'ın tamamında mouse takibi — ama canvas pointer-events:none olduğu için
+  // hero section üzerinden alıyoruz
+  const heroEl = document.getElementById('hero');
+  heroEl.addEventListener('mousemove', e => {
+    const r = heroEl.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  heroEl.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  const NODE_COUNT = 85;
+  const CONNECT_DIST = 140;
+  const MOUSE_DIST   = 160;
+  let nodes = [];
+
+  class Node {
+    constructor() { this.reset(); }
+    reset() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
+      this.r  = Math.random() * 1.5 + 0.8;
+      this.color = Math.random() > 0.65 ? ACCENT2 : ACCENT;
+    }
+    update() {
+      // Mouse repulsion
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const d  = Math.sqrt(dx * dx + dy * dy);
+      if (d < MOUSE_DIST && d > 0) {
+        const f = (MOUSE_DIST - d) / MOUSE_DIST * 0.6;
+        this.vx += (dx / d) * f;
+        this.vy += (dy / d) * f;
+      }
+
+      // Hız sınırı
+      const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+      if (speed > 1.8) { this.vx = (this.vx / speed) * 1.8; this.vy = (this.vy / speed) * 1.8; }
+
+      // Sürtünme
+      this.vx *= 0.992;
+      this.vy *= 0.992;
+
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Sınırlarda geri dön
+      if (this.x < 0)  { this.x = 0;  this.vx *= -1; }
+      if (this.x > W)  { this.x = W;  this.vx *= -1; }
+      if (this.y < 0)  { this.y = 0;  this.vy *= -1; }
+      if (this.y > H)  { this.y = H;  this.vy *= -1; }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},0.7)`;
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    nodes = Array.from({ length: NODE_COUNT }, () => new Node());
+  }
+  initParticles();
+
+  function drawConnections() {
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < CONNECT_DIST) {
+          const alpha = (1 - d / CONNECT_DIST) * 0.22;
+          // Mouse yakınında çizgiler daha parlak
+          const mdx = (nodes[i].x + nodes[j].x) / 2 - mouse.x;
+          const mdy = (nodes[i].y + nodes[j].y) / 2 - mouse.y;
+          const md  = Math.sqrt(mdx * mdx + mdy * mdy);
+          const boost = md < MOUSE_DIST ? (1 - md / MOUSE_DIST) * 0.4 : 0;
+
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(${ACCENT},${alpha + boost})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    drawConnections();
+    nodes.forEach(n => { n.update(); n.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ─── PARTICLE CANVAS ────────────────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+
+  const ctx    = canvas.getContext('2d');
+  const ACCENT = '#7effb2';
+  const ACCENT2= '#5e9bff';
+  const MUTED  = '#2a2a3a';
+
+  const WORDS  = ['React', 'Node.js', 'Mobile', 'UI/UX', 'SEO', 'API', 'Design', 'Web'];
+  const W = 460, H = 460;
+  canvas.width  = W;
+  canvas.height = H;
+
+  // mouse
+  let mouse = { x: W / 2, y: H / 2, active: false };
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = (e.clientX - r.left) * (W / r.width);
+    mouse.y = (e.clientY - r.top)  * (H / r.height);
+    mouse.active = true;
+  });
+  canvas.addEventListener('mouseleave', () => { mouse.active = false; });
+
+  /* ── Parçacıklar ── */
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init = false) {
+      this.x  = Math.random() * W;
+      this.y  = init ? Math.random() * H : H + 10;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = -(Math.random() * 0.6 + 0.2);
+      this.r  = Math.random() * 1.8 + 0.4;
+      this.alpha = Math.random() * 0.5 + 0.2;
+      this.color = Math.random() > 0.7 ? ACCENT2 : ACCENT;
+      this.life = 0;
+      this.maxLife = Math.random() * 260 + 140;
+    }
+    update() {
+      // mouse repulsion
+      if (mouse.active) {
+        const dx = this.x - mouse.x, dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 90) {
+          const force = (90 - dist) / 90 * 1.2;
+          this.vx += (dx / dist) * force * 0.08;
+          this.vy += (dy / dist) * force * 0.08;
+        }
+      }
+      this.vx *= 0.98; this.vy *= 0.99;
+      this.x += this.vx; this.y += this.vy;
+      this.life++;
+      const t = this.life / this.maxLife;
+      this.alpha = t < 0.1 ? t * 5 * 0.6 : t > 0.8 ? (1 - t) * 5 * 0.6 : 0.6;
+      if (this.life >= this.maxLife || this.y < -10 || this.x < -10 || this.x > W + 10)
+        this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.alpha;
+      ctx.fill();
+    }
+  }
+
+  /* ── Bağlantı çizgileri ── */
+  function drawConnections(particles) {
+    const MAX_DIST = 80;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < MAX_DIST) {
+          const a = (1 - d / MAX_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = ACCENT;
+          ctx.globalAlpha = a;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  /* ── Yüzen kelimeler ── */
+  class FloatingWord {
+    constructor(word, idx, total) {
+      this.word  = word;
+      const angle = (idx / total) * Math.PI * 2;
+      const rx    = 155, ry = 130;
+      this.bx = W/2 + Math.cos(angle) * rx;
+      this.by = H/2 + Math.sin(angle) * ry;
+      this.x  = this.bx; this.y = this.by;
+      this.vx = 0; this.vy = 0;
+      this.angle   = angle;
+      this.speed   = (Math.random() * 0.00008 + 0.00005) * (Math.random() > 0.5 ? 1 : -1);
+      this.elapsed = Math.random() * Math.PI * 2;
+      this.rx = rx; this.ry = ry;
+      this.alpha = 0;
+      this.fontSize = Math.random() > 0.5 ? 11 : 10;
+    }
+    update() {
+      this.elapsed += this.speed * 60;
+      this.bx = W/2 + Math.cos(this.elapsed) * this.rx;
+      this.by = H/2 + Math.sin(this.elapsed) * this.ry;
+
+      if (mouse.active) {
+        const dx = this.bx - mouse.x, dy = this.by - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          this.vx += (dx / dist) * 0.6;
+          this.vy += (dy / dist) * 0.6;
+        }
+      }
+      this.vx  = (this.vx + (this.bx - this.x) * 0.04) * 0.88;
+      this.vy  = (this.vy + (this.by - this.y) * 0.04) * 0.88;
+      this.x  += this.vx; this.y += this.vy;
+      if (this.alpha < 1) this.alpha = Math.min(1, this.alpha + 0.015);
+    }
+    draw() {
+      // bağlantı çizgisi merkeze
+      const dx = this.x - W/2, dy = this.y - H/2;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      ctx.beginPath();
+      ctx.moveTo(W/2, H/2);
+      ctx.lineTo(this.x, this.y);
+      const lineAlpha = (1 - dist / 220) * 0.12 * this.alpha;
+      ctx.strokeStyle = ACCENT;
+      ctx.globalAlpha = Math.max(0, lineAlpha);
+      ctx.lineWidth   = 0.8;
+      ctx.stroke();
+
+      // kelime arka plan
+      ctx.font = `${this.fontSize}px 'DM Mono', monospace`;
+      const tw = ctx.measureText(this.word).width;
+      ctx.globalAlpha = this.alpha * 0.9;
+      ctx.fillStyle   = '#0d0d14';
+      roundRect(ctx, this.x - tw/2 - 7, this.y - this.fontSize/2 - 5, tw + 14, this.fontSize + 10, 3);
+      ctx.fill();
+      ctx.strokeStyle = ACCENT;
+      ctx.globalAlpha = this.alpha * 0.25;
+      ctx.lineWidth   = 0.8;
+      ctx.stroke();
+
+      // kelime metni
+      ctx.globalAlpha = this.alpha;
+      ctx.fillStyle   = ACCENT;
+      ctx.fillText(this.word, this.x - tw/2, this.y + this.fontSize * 0.35);
+    }
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  /* ── Merkez çekirdek ── */
+  let coreAngle = 0;
+  function drawCore() {
+    coreAngle += 0.008;
+    const cx = W/2, cy = H/2;
+
+    // Dış halka
+    ctx.beginPath();
+    ctx.arc(cx, cy, 38, 0, Math.PI * 2);
+    ctx.strokeStyle = ACCENT;
+    ctx.globalAlpha = 0.08;
+    ctx.lineWidth   = 20;
+    ctx.stroke();
+
+    // Dönen dash çemberi
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(coreAngle);
+    ctx.beginPath();
+    ctx.arc(0, 0, 38, 0, Math.PI * 1.6);
+    ctx.strokeStyle = ACCENT;
+    ctx.globalAlpha = 0.5;
+    ctx.lineWidth   = 1.5;
+    ctx.setLineDash([6, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+
+    // Ters dönen
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(-coreAngle * 1.5);
+    ctx.beginPath();
+    ctx.arc(0, 0, 26, 0, Math.PI * 1.2);
+    ctx.strokeStyle = ACCENT2;
+    ctx.globalAlpha = 0.4;
+    ctx.lineWidth   = 1;
+    ctx.setLineDash([3, 6]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+
+    // İç daire dolgu
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 20);
+    grad.addColorStop(0, 'rgba(126,255,178,0.18)');
+    grad.addColorStop(1, 'rgba(126,255,178,0)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.globalAlpha = 1;
+    ctx.fill();
+
+    // "startUp" yazısı
+    ctx.font = "bold 11px 'DM Mono', monospace";
+    ctx.fillStyle = ACCENT;
+    ctx.globalAlpha = 0.9;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('startUp', cx, cy);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+  }
+
+  /* ── Init ── */
+  const particles = Array.from({ length: 55 }, () => new Particle());
+  const words     = WORDS.map((w, i) => new FloatingWord(w, i, WORDS.length));
+
+  // about section görününce başlat
+  const aboutEl = document.getElementById('about');
+  let running = false;
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+
+    // arka plan gradient
+    const bg = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W * 0.7);
+    bg.addColorStop(0,   'rgba(22,22,31,1)');
+    bg.addColorStop(0.6, 'rgba(17,17,24,1)');
+    bg.addColorStop(1,   'rgba(10,10,15,1)');
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // grid dots
+    ctx.globalAlpha = 0.06;
+    ctx.fillStyle = ACCENT;
+    for (let gx = 20; gx < W; gx += 32)
+      for (let gy = 20; gy < H; gy += 32) {
+        ctx.beginPath(); ctx.arc(gx, gy, 1, 0, Math.PI*2); ctx.fill();
+      }
+
+    drawConnections(particles);
+    particles.forEach(p => { p.update(); p.draw(); });
+    words.forEach(w => { w.update(); w.draw(); });
+    drawCore();
+
+    requestAnimationFrame(loop);
+  }
+
+  if (aboutEl) {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !running) {
+        running = true;
+        loop();
+        obs.disconnect();
+      }
+    }, { threshold: 0.2 });
+    obs.observe(aboutEl);
+  } else {
+    loop();
+  }
+})();
 
 // ─── CUSTOM CURSOR ───────────────────────────────────────────────────────────
 const cursor = document.getElementById('cursor');
@@ -123,9 +604,9 @@ const translations = {
     p2_desc:           `Gerçek zamanlı veri görselleştirmesi yapan bir analitik paneli. WebSocket ile canlı güncelleme, D3.js ile etkileşimli grafikler.`,
     p3_name:           `AI Asistan API`,
     p3_desc:           `OpenAI entegrasyonu ile oluşturulan akıllı asistan API'ı. Rate limiting, caching ve kullanıcı oturum yönetimi içeriyor.`,
-    svc_tag:           `Hizmetler`,
-    svc_title:         `Ne Yapıyoruz?`,
-    svc_sub:           `Projenizin her aşamasında yanınızdayız.`,
+    svc_tag:           `Nasıl Çalışıyoruz?`,
+    svc_title:         `Nasıl Çalışıyoruz?`,
+    svc_sub:           `Teknik Yetkinliklerimiz`,
     svc_web:           `⟨/⟩ Web Geliştirme`,
     svc_mob:           `📱 Mobil Uygulama`,
     svc_des:           `🎨 Tasarım & SEO`,
@@ -140,6 +621,25 @@ const translations = {
     contact_sub:       `Yeni bir ürün mü çıkarmak istiyorsunuz? Mevcut sitenizi mi yenilemek istiyorsunuz? Fikrinizi bize anlatın, gerisi bizde.`,
     contact_email_btn: `✉ E-posta Gönder`,
     contact_direct:    `Ya da direkt ulaşın: <a href="mailto:email@ornek.com">email@ornek.com</a>`,
+    github_tag:        `GitHub`,
+    github_title:      `Açık Kaynak Projelerimiz`,
+    github_sub:        `GitHub üzerindeki herkese açık repolarımız.`,
+    footer_desc:       `İstanbul merkezli, genç ve tutkulu bir yazılım girişimi. Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.`,
+    footer_nav_title:  `Hızlı Linkler`,
+    footer_svc_title:  `Hizmetler`,
+    footer_hours:      `Pzt–Cum, 09:00–18:00`,
+    footer_made:       `İstanbul'dan 🖤 ile yapıldı`,
+    contact_info_loc_label:   `Konum`,
+    contact_info_email_label: `E-posta`,
+    contact_info_hours_label: `Çalışma Saatleri`,
+    form_name:         `Adınız`,
+    form_email:        `E-posta`,
+    form_subject:      `Konu`,
+    form_message:      `Mesajınız`,
+    form_send:         `Gönder →`,
+    form_note:         `En kısa sürede size dönüş yapacağız.`,
+    form_success_title:`Mesajınız alındı!`,
+    form_success_sub:  `En kısa sürede size dönüş yapacağız.`,
     footer_copy:       `© 2025 StartUp Co. — Tüm hakları saklıdır.`,
   },
   en: {
@@ -179,9 +679,9 @@ const translations = {
     p2_desc:           `A real-time data visualization dashboard. Live updates via WebSocket and interactive charts powered by D3.js.`,
     p3_name:           `AI Assistant API`,
     p3_desc:           `A smart assistant API built with OpenAI integration. Features rate limiting, caching and user session management.`,
-    svc_tag:           `Services`,
-    svc_title:         `What We Do`,
-    svc_sub:           `We're with you at every stage of your project.`,
+    svc_tag:           `How We Work`,
+    svc_title:         `How We Work`,
+    svc_sub:           `Our Technical Expertise`,
     svc_web:           `⟨/⟩ Web Development`,
     svc_mob:           `📱 Mobile Apps`,
     svc_des:           `🎨 Design & SEO`,
@@ -196,6 +696,25 @@ const translations = {
     contact_sub:       `Launching a new product? Redesigning your website? Tell us your idea — we'll handle the rest.`,
     contact_email_btn: `✉ Send an Email`,
     contact_direct:    `Or reach us directly: <a href="mailto:email@ornek.com">email@ornek.com</a>`,
+    github_tag:        `GitHub`,
+    github_title:      `Our Open Source Projects`,
+    github_sub:        `Our public repositories on GitHub.`,
+    footer_desc:       `Istanbul-based young and passionate software startup delivering end-to-end solutions in web, mobile, SEO and design.`,
+    footer_nav_title:  `Quick Links`,
+    footer_svc_title:  `Services`,
+    footer_hours:      `Mon–Fri, 09:00–18:00`,
+    footer_made:       `Made with 🖤 from Istanbul`,
+    contact_info_loc_label:   `Location`,
+    contact_info_email_label: `Email`,
+    contact_info_hours_label: `Working Hours`,
+    form_name:         `Your Name`,
+    form_email:        `Email`,
+    form_subject:      `Subject`,
+    form_message:      `Your Message`,
+    form_send:         `Send →`,
+    form_note:         `We'll get back to you as soon as possible.`,
+    form_success_title:`Message received!`,
+    form_success_sub:  `We'll get back to you as soon as possible.`,
     footer_copy:       `© 2025 StartUp Co. — All rights reserved.`,
   }
 };
@@ -214,3 +733,160 @@ function setLang(lang) {
   });
   document.documentElement.lang = lang;
 }
+
+
+// ─── CONTACT FORM ────────────────────────────────────────────────────────────
+function handleContactForm() {
+  const name    = document.getElementById('cf-name')?.value.trim();
+  const email   = document.getElementById('cf-email')?.value.trim();
+  const subject = document.getElementById('cf-subject')?.value.trim();
+  const message = document.getElementById('cf-message')?.value.trim();
+  const btn     = document.getElementById('cf-submit');
+
+  // Basit validasyon
+  if (!name || !email || !message) {
+    [['cf-name', name], ['cf-email', email], ['cf-message', message]].forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el && !val) {
+        el.style.borderColor = '#ff6b6b';
+        el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+      }
+    });
+    return;
+  }
+
+  // Gönderiliyor animasyonu
+  btn.disabled = true;
+  const btnText = document.getElementById('cf-btn-text');
+  btnText.textContent = '...';
+
+  // Simüle edilmiş gönderim
+  setTimeout(() => {
+    document.getElementById('contact-form-box').style.display = 'none';
+    document.getElementById('cf-success').style.display = 'block';
+  }, 1200);
+}
+
+// ─── TERMINAL TYPEWRITER ─────────────────────────────────────────────────────
+const terminalLines = [
+  { type: 'comment', text: '// şirket profili' },
+  { type: 'plain',   text: '{' },
+  { type: 'kv',      key: '"şirket"',    value: '"StartUp Co."',  valueClass: 't-str',  comma: true  },
+  { type: 'kv',      key: '"konum"',     value: '"İstanbul, TR"', valueClass: 't-str',  comma: true  },
+  { type: 'kv',      key: '"kuruluş"',   value: '2024',           valueClass: 't-num',  comma: true  },
+  { type: 'kv',      key: '"müsait"',    value: 'true',           valueClass: 't-bool', comma: true  },
+  { type: 'kv',      key: '"hizmetler"', value: '[',              valueClass: '',       comma: false },
+  { type: 'arr',     text: '"Web Geliştirme"',  comma: true  },
+  { type: 'arr',     text: '"Mobil Uygulama"',  comma: true  },
+  { type: 'arr',     text: '"SEO"',             comma: true  },
+  { type: 'arr',     text: '"UI/UX Tasarım"',   comma: false },
+  { type: 'plain',   text: '  ]' },
+  { type: 'plain',   text: '}' },
+];
+
+function buildLineHTML(line) {
+  const ind1 = '&nbsp;&nbsp;';
+  const ind2 = '&nbsp;&nbsp;&nbsp;&nbsp;';
+  switch (line.type) {
+    case 'comment':
+      return `<span class="t-comment">${line.text}</span>`;
+    case 'plain':
+      return line.text;
+    case 'kv':
+      return `${ind1}<span class="t-key">${line.key}</span>: ${
+        line.valueClass
+          ? `<span class="${line.valueClass}">${line.value}</span>`
+          : line.value
+      }${line.comma ? ',' : ''}`;
+    case 'arr':
+      return `${ind2}<span class="t-str">${line.text}</span>${line.comma ? ',' : ''}`;
+    default:
+      return line.text;
+  }
+}
+
+async function runTerminalTypewriter() {
+  const container = document.getElementById('terminal-typed');
+  if (!container) return;
+
+  const CHAR_SPEED  = 18;   // ms per karakter
+  const LINE_PAUSE  = 70;   // satır sonu bekleme
+  const START_DELAY = 500;  // başlamadan önce bekleme
+
+  await new Promise(r => setTimeout(r, START_DELAY));
+
+  // Satırları tek tek yaz
+  for (let i = 0; i < terminalLines.length; i++) {
+    const line = terminalLines[i];
+    const rawText = line.type === 'kv'
+      ? (line.key + ': ' + line.value + (line.comma ? ',' : ''))
+      : line.type === 'arr'
+        ? ('    ' + line.text + (line.comma ? ',' : ''))
+        : (line.type === 'plain' ? line.text : line.text);
+
+    // Geçici span — yazılıyor efekti için düz metin
+    const tempSpan = document.createElement('span');
+    container.appendChild(tempSpan);
+
+    // Karakterleri tek tek yaz
+    for (let c = 0; c < rawText.length; c++) {
+      tempSpan.textContent += rawText[c];
+      await new Promise(r => setTimeout(r, CHAR_SPEED));
+    }
+
+    // Yazmayı bitirince styled HTML ile değiştir
+    tempSpan.outerHTML = buildLineHTML(line);
+
+    // Satır sonu
+    container.insertAdjacentHTML('beforeend', '<br>');
+    await new Promise(r => setTimeout(r, LINE_PAUSE));
+  }
+}
+
+runTerminalTypewriter();
+
+// ─── LOCATION MAP ────────────────────────────────────────────────────────────
+(function() {
+  const wrap = document.getElementById('location-map');
+  const card = document.getElementById('lm-card');
+  if (!wrap || !card) return;
+
+  let expanded = false;
+
+  // Tilt efekti
+  wrap.addEventListener('mousemove', e => {
+    const r   = card.getBoundingClientRect();
+    const cx  = r.left + r.width  / 2;
+    const cy  = r.top  + r.height / 2;
+    const rx  = (e.clientY - cy) / 50 * -8;
+    const ry  = (e.clientX - cx) / 50 * 8;
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+
+  wrap.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+  });
+
+  // Genişlet / kapat
+  wrap.addEventListener('click', () => {
+    expanded = !expanded;
+    wrap.classList.toggle('expanded', expanded);
+  });
+})();
+
+// ─── SCROLL REVEAL — PRENSİPLER ──────────────────────────────────────────────
+(function() {
+  const items = document.querySelectorAll('.rl-item');
+  if (!items.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const i  = Array.from(items).indexOf(el);
+        setTimeout(() => el.classList.add('rl-in'), i * 130);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => obs.observe(el));
+})();

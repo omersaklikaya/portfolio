@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
         rel="stylesheet" />
+
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -16,7 +17,6 @@
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
 
-    <!-- NAV -->
     <nav>
         <a class="nav-logo" href="#hero"><span>{</span> startUp <span>}</span></a>
         <div class="nav-right">
@@ -33,8 +33,8 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <section id="hero">
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-grid">
             <div>
                 <p class="hero-label" data-i18n="hero_label">— İstanbul merkezli yazılım girişimi</p>
@@ -48,149 +48,50 @@
                 </div>
             </div>
 
-            <div class="hero-terminal">
+            <div class="hero-terminal" id="hero-terminal">
                 <div class="terminal-bar">
-                    <div class="dot dot-r"></div>
-                    <div class="dot dot-y"></div>
-                    <div class="dot dot-g"></div>
-                    <span class="terminal-file">company.json</span>
+                    <div class="dot dot-r" id="btn-close" title="Kapat"></div>
+                    <div class="dot dot-y" id="btn-minimize" title="Küçült"></div>
+                    <div class="dot dot-g" id="btn-expand" title="Genişlet"></div>
+                    <span class="terminal-file" id="terminal-filename">company.json</span>
                 </div>
-                <div class="terminal-body">
-                    <span class="t-comment" data-i18n="terminal_comment">// şirket profili</span><br>
-                    {<br>
-                    &nbsp;&nbsp;<span class="t-key" data-i18n="terminal_k1">"şirket"</span>: <span
-                        class="t-str">"StartUp Co."</span>,<br>
-                    &nbsp;&nbsp;<span class="t-key" data-i18n="terminal_k2">"konum"</span>: <span
-                        class="t-str">"İstanbul, TR"</span>,<br>
-                    &nbsp;&nbsp;<span class="t-key" data-i18n="terminal_k3">"kuruluş"</span>: <span
-                        class="t-num">2024</span>,<br>
-                    &nbsp;&nbsp;<span class="t-key" data-i18n="terminal_k4">"müsait"</span>: <span
-                        class="t-bool">true</span>,<br>
-                    &nbsp;&nbsp;<span class="t-key" data-i18n="terminal_k5">"hizmetler"</span>: [<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str" data-i18n="terminal_s1">"Web Geliştirme"</span>,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str" data-i18n="terminal_s2">"Mobil Uygulama"</span>,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"SEO"</span>, <span class="t-str"
-                        data-i18n="terminal_s3">"UI/UX Tasarım"</span><br>
-                    &nbsp;&nbsp;]<br>
-                    } <span class="t-cursor"></span>
+
+                <div class="terminal-body" id="terminal-body">
+                    <span id="terminal-typed"></span><span class="t-cursor" id="terminal-cursor"></span>
+                </div>
+
+                <div class="terminal-minimized" id="terminal-minimized" style="display:none;">
+                    <span class="t-comment">$</span> <span class="t-str">StartUp Co.</span> <span class="t-comment">—
+                        İstanbul, 2024 — müsait:</span> <span class="t-bool">true</span><span class="t-cursor"></span>
+                </div>
+
+                <div class="terminal-expanded" id="terminal-expanded" style="display:none;">
+                    <div class="terminal-expanded-body">
+                        <span id="story-typed"></span><span class="t-cursor"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-closed" id="terminal-closed" style="display:none;">
+                <div class="terminal-closed-inner">
+                    <p class="tc-line"><span class="t-comment">process exited with code </span><span
+                            class="t-num">0</span></p>
+                    <p class="tc-line"><span class="t-comment">session terminated — </span><span class="t-str">StartUp
+                            Co.</span></p>
+                    <p class="tc-line"><span class="t-comment">$ </span><span class="t-cursor"></span></p>
+                    <button class="tc-reopen" id="btn-reopen">↩ şirket profilimiz</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
         <div class="section-inner">
             <div class="about-grid">
 
                 <div class="about-visual">
-                    <div class="orbit-container">
-                        <div class="orbit-glow"></div>
-                        <div class="orbit-ring orbit-ring-1"></div>
-                        <div class="orbit-ring orbit-ring-2"></div>
-
-                        <div class="orbit-core">
-                            <div class="orbit-core-hex"></div>
-                            <div class="core-text">
-                                <span class="core-label">IST</span>
-                                <span class="core-sub">İstanbul</span>
-                            </div>
-                        </div>
-
-                        <!-- İç halka nodeları -->
-                        <div class="orbit-node" id="on0">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="3" />
-                                        <ellipse cx="12" cy="12" rx="10" ry="4" />
-                                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
-                                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">React</span>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node" id="on1">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <polygon points="12,2 2,7 2,17 12,22 22,17 22,7" />
-                                        <polyline points="2,7 12,12 22,7" />
-                                        <line x1="12" y1="12" x2="12" y2="22" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">Node.js</span>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node" id="on2">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <circle cx="11" cy="11" r="8" />
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                                        <line x1="11" y1="8" x2="11" y2="14" />
-                                        <line x1="8" y1="11" x2="14" y2="11" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">SEO</span>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node" id="on3">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                                        <path d="M9 9h6M9 12h6M9 15h4" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">UI/UX</span>
-                            </div>
-                        </div>
-
-                        <!-- Dış halka nodeları -->
-                        <div class="orbit-node orbit-node-sm" id="on4">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <rect x="7" y="2" width="10" height="20" rx="2" />
-                                        <line x1="12" y1="18" x2="12" y2="18" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">Mobile</span>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node orbit-node-sm" id="on5">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <path d="M8 12 Q12 6 16 12 Q12 18 8 12" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">Design</span>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node orbit-node-sm" id="on6">
-                            <div class="orbit-node-inner">
-                                <div class="orbit-node-icon">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M8 9l-3 3 3 3M16 9l3 3-3 3M14 6l-4 12" />
-                                    </svg>
-                                </div>
-                                <span class="orbit-node-label">API</span>
-                            </div>
-                        </div>
-
-                        <div class="orbit-badge" data-i18n="orbit_badge">Yeni Proje Alıyoruz</div>
-                    </div>
+                    <canvas id="particle-canvas"></canvas>
                 </div>
-
                 <div class="about-text reveal">
                     <p class="section-tag" data-i18n="about_tag">Hakkımızda</p>
                     <h2 class="section-title" data-i18n="about_title">Biz kimiz<span
@@ -223,7 +124,6 @@
         </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects">
         <div class="section-inner">
             <p class="section-tag reveal" data-i18n="proj_tag">Projeler</p>
@@ -316,12 +216,56 @@
         </div>
     </section>
 
-    <!-- SERVICES -->
     <section id="skills">
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="svc_tag">Hizmetler</p>
-            <h2 class="section-title reveal" data-i18n="svc_title">Ne Yapıyoruz?</h2>
-            <p class="section-sub reveal" data-i18n="svc_sub">Projenizin her aşamasında yanınızdayız.</p>
+            <p class="section-tag reveal" data-i18n="svc_tag">Nasıl Çalışıyoruz?</p>
+            <h2 class="section-title reveal" data-i18n="svc_title">Nasıl Çalışıyoruz?</h2>
+
+            <div class="reveal-list">
+                <div class="rl-item">
+                    <div class="rl-num">01</div>
+                    <div class="rl-body">
+                        <div class="rl-bar"></div>
+                        <h3 class="rl-title">Şeffaflık, her zaman.</h3>
+                        <p class="rl-desc">Projenizin her aşamasını sizinle paylaşıyoruz. Ne yapıldığını, neden
+                            yapıldığını ve ne zaman teslim edileceğini her zaman bilirsiniz. Sürpriz yok, bahane yok.
+                        </p>
+                    </div>
+                </div>
+                <div class="rl-item">
+                    <div class="rl-num">02</div>
+                    <div class="rl-body">
+                        <div class="rl-bar"></div>
+                        <h3 class="rl-title">Fikrinizi ciddiye alıyoruz.</h3>
+                        <p class="rl-desc">Fikirlerinizi sadece "müşteri isteği" olarak görmüyor, birlikte
+                            şekillendiriyor ve en iyi versiyonuna ulaştırıyoruz.</p>
+                    </div>
+                </div>
+                <div class="rl-item">
+                    <div class="rl-num">03</div>
+                    <div class="rl-body">
+                        <div class="rl-bar"></div>
+                        <h3 class="rl-title">Hız ve kalite birbirini götürmez.</h3>
+                        <p class="rl-desc">Hızlı teslim ederiz — ama asla kaliteden taviz vermeyiz. Startup ruhuyla
+                            çalışır, kurumsal titizlikle teslim ederiz.</p>
+                    </div>
+                </div>
+                <div class="rl-item">
+                    <div class="rl-num">04</div>
+                    <div class="rl-body">
+                        <div class="rl-bar"></div>
+                        <h3 class="rl-title">Proje biter. Ortaklık bitmez.</h3>
+                        <p class="rl-desc">Teslimat bir son değil, bir başlangıçtır. Ürününüz büyüdükçe biz de büyürüz —
+                            destek ve yeni hedeflerle yanınızda olmaya devam ederiz.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="section-divider reveal">
+                <span class="section-divider-text" data-i18n="svc_sub">Teknik Yetkinliklerimiz</span>
+            </div>
 
             <div class="skills-layout">
 
@@ -467,32 +411,183 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
         <div class="section-inner">
-            <div class="contact-inner">
-                <p class="section-tag reveal" style="justify-content:center" data-i18n="contact_tag">İletişim</p>
-                <h2 class="section-title reveal" data-i18n="contact_title">Projenizi konuşalım<span
-                        style="color:var(--accent)">.</span></h2>
-                <p class="section-sub reveal" style="margin: 0 auto;" data-i18n="contact_sub">Yeni bir ürün mü çıkarmak
-                    istiyorsunuz? Mevcut sitenizi mi yenilemek istiyorsunuz? Fikrinizi bize anlatın, gerisi bizde.</p>
-                <div class="contact-links reveal">
-                    <a href="mailto:email@ornek.com" class="contact-link" data-i18n="contact_email_btn">✉ E-posta
-                        Gönder</a>
-                    <a href="https://linkedin.com" target="_blank" class="contact-link">in LinkedIn</a>
-                    <a href="https://github.com" target="_blank" class="contact-link">⌥ GitHub</a>
-                    <a href="https://twitter.com" target="_blank" class="contact-link">𝕏 Twitter</a>
+            <div class="contact-grid">
+
+                <div class="contact-left reveal">
+                    <p class="section-tag" data-i18n="contact_tag">İletişim</p>
+                    <h2 class="section-title" data-i18n="contact_title">Projenizi konuşalım<span
+                            style="color:var(--accent)">.</span></h2>
+                    <p class="contact-sub-text" data-i18n="contact_sub">Yeni bir ürün mü çıkarmak istiyorsunuz? Mevcut
+                        sitenizi mi yenilemek istiyorsunuz? Fikrinizi bize anlatın, gerisi bizde.</p>
+
+                    <ul class="contact-info-list">
+                        <li>
+                            <div class="contact-info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-info-label" data-i18n="contact_info_loc_label">Konum</div>
+                                <div class="contact-info-val">İstanbul, Türkiye</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-info-label" data-i18n="contact_info_email_label">E-posta</div>
+                                <a class="contact-info-val contact-info-link"
+                                    href="mailto:email@ornek.com">email@ornek.com</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-info-label" data-i18n="contact_info_hours_label">Çalışma Saatleri
+                                </div>
+                                <div class="contact-info-val" data-i18n="footer_hours">Pzt–Cum, 09:00–18:00</div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <p class="contact-email reveal" data-i18n="contact_direct">Ya da direkt ulaşın: <a
-                        href="mailto:email@ornek.com">email@ornek.com</a></p>
+
+                <div class="contact-form-wrap reveal">
+                    <div class="contact-form-inner" id="contact-form-box">
+                        <div class="cf-row cf-row-2">
+                            <div class="cf-field">
+                                <label class="cf-label" data-i18n="form_name">Adınız</label>
+                                <input class="cf-input" id="cf-name" type="text" placeholder="Ada Lovelace"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="cf-field">
+                                <label class="cf-label" data-i18n="form_email">E-posta</label>
+                                <input class="cf-input" id="cf-email" type="email" placeholder="ada@ornek.com"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="cf-field">
+                            <label class="cf-label" data-i18n="form_subject">Konu</label>
+                            <input class="cf-input" id="cf-subject" type="text" placeholder="Proje fikri, teklif..."
+                                autocomplete="off" />
+                        </div>
+                        <div class="cf-field">
+                            <label class="cf-label" data-i18n="form_message">Mesajınız</label>
+                            <textarea class="cf-input cf-textarea" id="cf-message"
+                                placeholder="Projeniz hakkında kısaca bilgi verin..."></textarea>
+                        </div>
+                        <button class="cf-submit" id="cf-submit" onclick="handleContactForm()">
+                            <span id="cf-btn-text" data-i18n="form_send">Gönder →</span>
+                        </button>
+                        <p class="cf-note" data-i18n="form_note">En kısa sürede size dönüş yapacağız.</p>
+                    </div>
+                    <div class="cf-success" id="cf-success" style="display:none;">
+                        <div class="cf-success-icon">✓</div>
+                        <h3 data-i18n="form_success_title">Mesajınız alındı!</h3>
+                        <p data-i18n="form_success_sub">En kısa sürede size dönüş yapacağız.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <span data-i18n="footer_copy">© 2025 StartUp Co. — Tüm hakları saklıdır.</span>
-        <span style="color:var(--accent)">İstanbul, TR 🇹🇷</span>
+        <div class="footer-inner">
+            <div class="footer-col footer-brand">
+                <a class="footer-logo" href="#hero"><span>{</span> startUp <span>}</span></a>
+                <p class="footer-desc" data-i18n="footer_desc">İstanbul merkezli, genç ve tutkulu bir yazılım girişimi.
+                    Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.</p>
+                <div class="footer-social">
+                    <a href="https://github.com" target="_blank" class="footer-social-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="footer-social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                            <rect x="2" y="9" width="4" height="12" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="footer-social-link" aria-label="Twitter/X">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col-title" data-i18n="footer_nav_title">Hızlı Linkler</h4>
+                <ul class="footer-links">
+                    <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
+                    <li><a href="#projects" data-i18n="nav_projects">Projeler</a></li>
+                    <li><a href="#github-repos" data-i18n="github_tag">GitHub</a></li>
+                    <li><a href="#skills" data-i18n="nav_services">Hizmetler</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">İletişim</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col-title" data-i18n="footer_svc_title">Hizmetler</h4>
+                <ul class="footer-links">
+                    <li><a href="#skills">React / Next.js</a></li>
+                    <li><a href="#skills">Node.js / API</a></li>
+                    <li><a href="#skills" data-i18n="svc_mob">Mobil Uygulama</a></li>
+                    <li><a href="#skills" data-i18n="svc_uiux">UI / UX Tasarımı</a></li>
+                    <li><a href="#skills">Teknik SEO</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col-title" data-i18n="contact_tag">İletişim</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span>İstanbul, Türkiye</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        <a href="mailto:email@ornek.com">email@ornek.com</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span data-i18n="footer_hours">Pzt–Cum, 09:00–18:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span data-i18n="footer_copy">© 2025 StartUp Co. — Tüm hakları saklıdır.</span>
+            <span class="footer-made" data-i18n="footer_made">İstanbul'dan 🖤 ile yapıldı</span>
+        </div>
     </footer>
 
     <script src="script.js"></script>
