@@ -789,6 +789,7 @@ function handleContactForm() {
   const subject = document.getElementById('cf-subject')?.value.trim();
   const message = document.getElementById('cf-message')?.value.trim();
   const btn     = document.getElementById('cf-submit');
+  const btnText = document.getElementById('cf-btn-text');
 
   if (!name || !email || !message) {
     [['cf-name', name], ['cf-email', email], ['cf-message', message]].forEach(([id, val]) => {
@@ -802,30 +803,25 @@ function handleContactForm() {
   }
 
   btn.disabled = true;
-  const btnText = document.getElementById('cf-btn-text');
   btnText.textContent = '...';
 
-  // Formspree URL'yi kendi form ID'nizle değiştirin
-  const FORM_URL = 'https://formspree.io/f/XXXXXX';
-
-  (async () => {
-    try {
-      const res = await fetch(FORM_URL, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body:    JSON.stringify({ name, email, subject, message })
-      });
-      if (res.ok) {
-        document.getElementById('contact-form-box').style.display = 'none';
-        document.getElementById('cf-success').style.display       = 'block';
-      } else {
-        btnText.textContent = 'Hata oluştu, tekrar deneyin.';
-        btn.disabled = false;
-      }
-    } catch {
-      // Offline / geliştirme ortamı: simüle et
+  fetch('http://localhost:3000/api/contact', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ name, email, subject, message })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
       document.getElementById('contact-form-box').style.display = 'none';
       document.getElementById('cf-success').style.display       = 'block';
+    } else {
+      btnText.textContent = data.error || 'Hata oluştu.';
+      btn.disabled = false;
     }
-  })();
+  })
+  .catch(() => {
+    btnText.textContent = 'Bağlantı hatası, tekrar deneyin.';
+    btn.disabled = false;
+  });
 }
