@@ -10,111 +10,89 @@
         content="web geliştirme, mobil uygulama, react, next.js, SEO, UI/UX, İstanbul, yazılım ajansı" />
     <meta name="author" content="StartUp Co." />
     <meta property="og:title" content="StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz" />
-    <meta property="og:description"
-        content="İstanbul merkezli genç ve tutkulu yazılım girişimi. Web, mobil, SEO ve tasarım alanlarında projelerinizi hayata geçiriyoruz." />
+    <meta property="og:description" content="İstanbul merkezli genç ve tutkulu yazılım girişimi." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://startupco.com.tr" />
-    <meta property="og:image" content="https://startupco.com.tr/og-image.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz" />
-    <meta name="twitter:description" content="İstanbul merkezli yazılım girişimi. Web, mobil, SEO ve UI/UX." />
     <title>StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
-
     <!-- NAV -->
-    <nav>
-        <a class="nav-logo" href="#hero"><span>{</span> startUp <span>}</span></a>
-        <div class="nav-right">
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
-                <li><a href="#projects" data-i18n="nav_projects">Projeler</a></li>
-                <li><a href="#skills" data-i18n="nav_services">Hizmetler</a></li>
-                <li><a href="#contact" data-i18n="nav_contact">İletişim</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <div class="lang-switcher">
-                <button class="lang-btn active" onclick="setLang('tr')">TR</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#hero">startUp<span class="logo-dot">.</span></a>
+            <div class="nav-right">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
+                    <li><a href="#projects" data-i18n="nav_projects">Projeler</a></li>
+                    <li><a href="#skills" data-i18n="nav_services">Hizmetler</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">İletişim</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+                    <button class="lang-btn" onclick="setLang('en')">EN</button>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- HERO -->
     <section id="hero">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-grid">
-
-            <div>
-                <p class="hero-label" data-i18n="hero_label">— İstanbul merkezli yazılım girişimi</p>
-                <h1 class="hero-name" data-i18n="hero_title">Fikirleri<br>Ürüne<br>Dönüştürüyoruz<span
-                        class="accent">.</span></h1>
-                <p class="hero-desc" data-i18n="hero_desc">Web & mobil uygulama geliştirme, SEO ve tasarım alanlarında
-                    genç ve enerjik bir ekiple projelerinizi hayata geçiriyoruz.</p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary" data-i18n="hero_cta1">Projelerimiz →</a>
-                    <a href="#contact" class="btn btn-outline" data-i18n="hero_cta2">Bize Ulaşın</a>
-                </div>
+        <canvas id="hero-particles"></canvas>
+        <div class="hero-inner">
+            <h1 class="hero-title reveal" data-i18n="hero_title">
+                Fikirleri Ürüne<br><span class="hero-highlight">Dönüştürüyoruz.</span>
+            </h1>
+            <p class="hero-desc reveal" data-i18n="hero_desc">
+                Web & mobil uygulama geliştirme, SEO ve tasarım alanlarında genç ve enerjik bir ekiple projelerinizi
+                hayata geçiriyoruz.
+            </p>
+            <div class="hero-cta reveal">
+                <a href="#projects" class="btn btn-primary" data-i18n="hero_cta1">Projelerimize Bak →</a>
+                <a href="#contact" class="btn btn-ghost" data-i18n="hero_cta2">Bize Ulaşın</a>
             </div>
-
-            <div class="hero-terminal" id="hero-terminal">
-                <div class="terminal-bar">
-                    <div class="dot dot-r" id="btn-close" data-tip="kapat"></div>
-                    <div class="dot dot-y" id="btn-minimize" data-tip="küçült"></div>
-                    <div class="dot dot-g" id="btn-expand" data-tip="genişlet"></div>
-                    <span class="terminal-file" id="terminal-filename">company.json</span>
-                </div>
-                <div class="terminal-body" id="terminal-body">
-                    <span id="terminal-typed"></span><span class="t-cursor" id="terminal-cursor"></span>
-                </div>
-                <div class="terminal-minimized" id="terminal-minimized" style="display:none;">
-                    <span class="t-comment">$</span>
-                    <span class="t-str">StartUp Co.</span>
-                    <span class="t-comment">— İstanbul, 2024 — müsait:</span>
-                    <span class="t-bool">true</span><span class="t-cursor"></span>
-                </div>
-                <div class="terminal-expanded" id="terminal-expanded" style="display:none;">
-                    <div class="terminal-expanded-body">
-                        <span id="story-typed"></span><span class="t-cursor"></span>
+            <div class="hero-bottom reveal" style="justify-content:center;">
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">2024</span>
+                        <span class="hero-stat-label" data-i18n="stat1">Kuruluş</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">10+</span>
+                        <span class="hero-stat-label" data-i18n="stat2">Tamamlanan Proje</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">4</span>
+                        <span class="hero-stat-label" data-i18n="stat3">Hizmet Alanı</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">100%</span>
+                        <span class="hero-stat-label">Müşteri Memnuniyeti</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="terminal-closed" id="terminal-closed" style="display:none;">
-                <div class="terminal-closed-inner">
-                    <p class="tc-line"><span class="t-comment">process exited with code </span><span
-                            class="t-num">0</span></p>
-                    <p class="tc-line"><span class="t-comment">session terminated — </span><span class="t-str">StartUp
-                            Co.</span></p>
-                    <p class="tc-line"><span class="t-comment">$ </span><span class="t-cursor"></span></p>
-                    <button class="tc-reopen" id="btn-reopen">↩ şirket profilimiz</button>
-                </div>
             </div>
-
         </div>
     </section>
 
     <!-- HAKKIMIZDA -->
-    <section id="about">
+    <section id="about" class="has-particles"><canvas class="section-particles" data-section="about"></canvas>
         <div class="section-inner">
+            <p class="section-tag reveal" data-i18n="about_tag">// hakkımızda</p>
+            <h2 class="section-title reveal" data-i18n="about_title">Biz kimiz?</h2>
             <div class="about-grid">
-                <div class="about-visual">
-                    <canvas id="particle-canvas"></canvas>
-                </div>
-                <div class="about-text reveal">
-                    <p class="section-tag" data-i18n="about_tag">Hakkımızda</p>
-                    <h2 class="section-title" data-i18n="about_title">Biz kimiz<span
-                            style="color:var(--accent)">?</span></h2>
+                <div class="about-left reveal">
                     <p data-i18n="about_p1">İstanbul'dan dünyaya açılmayı hedefleyen, <strong>genç ve tutkulu bir
                             yazılım girişimiyiz.</strong> Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler
                         sunuyoruz.</p>
@@ -122,8 +100,10 @@
                             kimliğini</strong> birlikte inşa ediyoruz. Hızlı iletişim, şeffaf süreç ve kalıcı sonuçlar
                         bizim çalışma biçimimizin özü.</p>
                     <p data-i18n="about_p3">Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak
-                        için buradayız. Haydi birlikte bir şeyler üretelim. 🚀</p>
-                    <div class="about-stats">
+                        için buradayız. 🚀</p>
+                </div>
+                <div class="about-right reveal">
+                    <div class="about-stats-grid">
                         <div class="stat-box">
                             <div class="stat-num">2024</div>
                             <div class="stat-label" data-i18n="stat1">Kuruluş Yılı</div>
@@ -136,6 +116,10 @@
                             <div class="stat-num">4</div>
                             <div class="stat-label" data-i18n="stat3">Hizmet Alanı</div>
                         </div>
+                        <div class="stat-box">
+                            <div class="stat-num">100%</div>
+                            <div class="stat-label" data-i18n="stat4">Müşteri Memnuniyeti</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,9 +127,9 @@
     </section>
 
     <!-- PROJELER -->
-    <section id="projects">
+    <section id="projects" class="has-particles"><canvas class="section-particles" data-section="projects"></canvas>
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="proj_tag">Projeler</p>
+            <p class="section-tag reveal" data-i18n="proj_tag">// projeler</p>
             <h2 class="section-title reveal" data-i18n="proj_title">Ürettiklerimiz</h2>
             <p class="section-sub reveal" data-i18n="proj_sub">Müşterilerimiz için geliştirdiğimiz bazı projeler.</p>
             <div class="projects-grid">
@@ -231,7 +215,7 @@
     <!-- HİZMETLER -->
     <section id="skills">
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="svc_tag">Nasıl Çalışıyoruz?</p>
+            <p class="section-tag reveal" data-i18n="svc_tag">// nasıl_çalışıyoruz</p>
             <h2 class="section-title reveal" data-i18n="svc_title">Nasıl Çalışıyoruz?</h2>
 
             <div class="reveal-list">
@@ -239,37 +223,36 @@
                     <div class="rl-num">01</div>
                     <div class="rl-body">
                         <div class="rl-bar"></div>
-                        <h3 class="rl-title">Şeffaflık, her zaman.</h3>
-                        <p class="rl-desc">Projenizin her aşamasını sizinle paylaşıyoruz. Ne yapıldığını, neden
-                            yapıldığını ve ne zaman teslim edileceğini her zaman bilirsiniz. Sürpriz yok, bahane yok.
-                        </p>
+                        <h3 class="rl-title" data-i18n="rl_title_1">Şeffaflık, her zaman.</h3>
+                        <p class="rl-desc" data-i18n="rl_desc_1">Projenizin her aşamasını sizinle paylaşıyoruz. Ne
+                            yapıldığını, neden yapıldığını ve ne zaman teslim edileceğini her zaman bilirsiniz.</p>
                     </div>
                 </div>
                 <div class="rl-item">
                     <div class="rl-num">02</div>
                     <div class="rl-body">
                         <div class="rl-bar"></div>
-                        <h3 class="rl-title">Fikrinizi ciddiye alıyoruz.</h3>
-                        <p class="rl-desc">Fikirlerinizi sadece "müşteri isteği" olarak görmüyor, birlikte
-                            şekillendiriyor ve en iyi versiyonuna ulaştırıyoruz.</p>
+                        <h3 class="rl-title" data-i18n="rl_title_2">Fikrinizi ciddiye alıyoruz.</h3>
+                        <p class="rl-desc" data-i18n="rl_desc_2">Fikirlerinizi sadece "müşteri isteği" olarak görmüyor,
+                            birlikte şekillendiriyor ve en iyi versiyonuna ulaştırıyoruz.</p>
                     </div>
                 </div>
                 <div class="rl-item">
                     <div class="rl-num">03</div>
                     <div class="rl-body">
                         <div class="rl-bar"></div>
-                        <h3 class="rl-title">Hız ve kalite birbirini götürmez.</h3>
-                        <p class="rl-desc">Hızlı teslim ederiz — ama asla kaliteden taviz vermeyiz. Startup ruhuyla
-                            çalışır, kurumsal titizlikle teslim ederiz.</p>
+                        <h3 class="rl-title" data-i18n="rl_title_3">Hız ve kalite birbirini götürmez.</h3>
+                        <p class="rl-desc" data-i18n="rl_desc_3">Hızlı teslim ederiz — ama asla kaliteden taviz
+                            vermeyiz. Startup ruhuyla çalışır, kurumsal titizlikle teslim ederiz.</p>
                     </div>
                 </div>
                 <div class="rl-item">
                     <div class="rl-num">04</div>
                     <div class="rl-body">
                         <div class="rl-bar"></div>
-                        <h3 class="rl-title">Proje biter. Ortaklık bitmez.</h3>
-                        <p class="rl-desc">Teslimat bir son değil, bir başlangıçtır. Ürününüz büyüdükçe biz de büyürüz —
-                            destek ve yeni hedeflerle yanınızda olmaya devam ederiz.</p>
+                        <h3 class="rl-title" data-i18n="rl_title_4">Proje biter. Ortaklık bitmez.</h3>
+                        <p class="rl-desc" data-i18n="rl_desc_4">Teslimat bir son değil, bir başlangıçtır. Ürününüz
+                            büyüdükçe biz de büyürüz — destek ve yeni hedeflerle yanınızda olmaya devam ederiz.</p>
                     </div>
                 </div>
             </div>
@@ -279,12 +262,10 @@
             </div>
 
             <div class="skills-layout">
-
                 <div class="skill-group reveal">
                     <div class="skill-group-title" data-i18n="svc_web">⟨/⟩ Web Geliştirme</div>
                     <ul class="skill-list">
-                        <li class="skill-item">
-                            <span class="skill-item-name">React / Next.js</span>
+                        <li class="skill-item"><span class="skill-item-name">React / Next.js</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -293,8 +274,7 @@
                                 <div class="skill-dot active"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name">Node.js / Backend API</span>
+                        <li class="skill-item"><span class="skill-item-name">Node.js / Backend API</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -303,8 +283,8 @@
                                 <div class="skill-dot"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name" data-i18n="svc_ecom">E-Ticaret Siteleri</span>
+                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_ecom">E-Ticaret
+                                Siteleri</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -313,8 +293,7 @@
                                 <div class="skill-dot active"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name">WordPress / CMS</span>
+                        <li class="skill-item"><span class="skill-item-name">WordPress / CMS</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -325,12 +304,10 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="skill-group reveal">
                     <div class="skill-group-title" data-i18n="svc_mob">📱 Mobil Uygulama</div>
                     <ul class="skill-list">
-                        <li class="skill-item">
-                            <span class="skill-item-name">React Native</span>
+                        <li class="skill-item"><span class="skill-item-name">React Native</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -339,18 +316,7 @@
                                 <div class="skill-dot active"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name">iOS & Android</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name" data-i18n="svc_appstore">App Store Yayınlama</span>
+                        <li class="skill-item"><span class="skill-item-name">iOS & Android</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -359,8 +325,18 @@
                                 <div class="skill-dot"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name" data-i18n="svc_push">Push Bildirim & API</span>
+                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_appstore">App Store
+                                Yayınlama</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_push">Push Bildirim &
+                                API</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -371,12 +347,11 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="skill-group reveal">
                     <div class="skill-group-title" data-i18n="svc_des">🎨 Tasarım & SEO</div>
                     <ul class="skill-list">
-                        <li class="skill-item">
-                            <span class="skill-item-name" data-i18n="svc_uiux">UI / UX Tasarımı</span>
+                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_uiux">UI / UX
+                                Tasarımı</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -385,8 +360,7 @@
                                 <div class="skill-dot active"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name" data-i18n="svc_brand">Marka Kimliği</span>
+                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_brand">Marka Kimliği</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -395,8 +369,7 @@
                                 <div class="skill-dot"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name">Teknik SEO</span>
+                        <li class="skill-item"><span class="skill-item-name">Teknik SEO</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -405,8 +378,8 @@
                                 <div class="skill-dot active"></div>
                             </div>
                         </li>
-                        <li class="skill-item">
-                            <span class="skill-item-name" data-i18n="svc_content">İçerik Stratejisi</span>
+                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_content">İçerik
+                                Stratejisi</span>
                             <div class="skill-level">
                                 <div class="skill-dot active"></div>
                                 <div class="skill-dot active"></div>
@@ -417,15 +390,15 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- GITHUB REPOS -->
-    <section id="github-repos">
+    <section id="github-repos" class="has-particles"><canvas class="section-particles"
+            data-section="github-repos"></canvas>
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="github_tag">GitHub</p>
+            <p class="section-tag reveal" data-i18n="github_tag">// github</p>
             <h2 class="section-title reveal" data-i18n="github_title">Açık Kaynak Projelerimiz</h2>
             <p class="section-sub reveal" data-i18n="github_sub">GitHub üzerindeki herkese açık repolarımız.</p>
             <div class="github-repos-grid">
@@ -475,7 +448,8 @@
 
                 <div class="github-repo-card reveal github-repo-soon">
                     <div class="github-repo-header">
-                        <div class="github-repo-name">yakında<span class="repo-soon-cursor">_</span></div>
+                        <div class="github-repo-name"><span data-i18n="github_soon_name">yakında</span><span
+                                class="repo-soon-cursor">_</span></div>
                         <div class="github-repo-icon" style="opacity:0.3;">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path
@@ -483,8 +457,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="github-repo-desc" style="color:var(--border);">Yeni bir açık kaynak proje geliyor...
-                    </div>
+                    <div class="github-repo-desc" style="color:#ccc;" data-i18n="github_soon">Yeni bir açık kaynak proje
+                        geliyor...</div>
                     <div class="github-repo-meta" style="opacity:0.3;"><span>coming soon</span></div>
                 </div>
 
@@ -493,17 +467,15 @@
     </section>
 
     <!-- İLETİŞİM -->
-    <section id="contact">
+    <section id="contact" class="has-particles"><canvas class="section-particles" data-section="contact"></canvas>
         <div class="section-inner">
             <div class="contact-grid">
 
                 <div class="contact-left reveal">
-                    <p class="section-tag" data-i18n="contact_tag">İletişim</p>
-                    <h2 class="section-title" data-i18n="contact_title">Projenizi konuşalım<span
-                            style="color:var(--accent)">.</span></h2>
+                    <p class="section-tag" data-i18n="contact_tag">// iletişim</p>
+                    <h2 class="section-title" data-i18n="contact_title">Projenizi konuşalım.</h2>
                     <p class="contact-sub-text" data-i18n="contact_sub">Yeni bir ürün mü çıkarmak istiyorsunuz? Mevcut
                         sitenizi mi yenilemek istiyorsunuz? Fikrinizi bize anlatın, gerisi bizde.</p>
-
                     <ul class="contact-info-list">
                         <li>
                             <div class="contact-info-icon">
@@ -528,7 +500,9 @@
                             <div>
                                 <div class="contact-info-label" data-i18n="contact_info_email_label">E-posta</div>
                                 <a class="contact-info-val contact-info-link"
-                                    href="mailto:email@ornek.com">email@ornek.com</a>
+                                    href="/cdn-cgi/l/email-protection#83e6eee2eaefc3ecf1ede6e8ade0ecee"><span
+                                        class="__cf_email__"
+                                        data-cfemail="5d38303c34311d322f333836733e3230">[email&#160;protected]</span></a>
                             </div>
                         </li>
                         <li>
@@ -590,9 +564,8 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
-
             <div class="footer-col footer-brand">
-                <a class="footer-logo" href="#hero"><span>{</span> startUp <span>}</span></a>
+                <a class="footer-logo" href="#hero">startUp<span class="logo-dot">.</span></a>
                 <p class="footer-desc" data-i18n="footer_desc">İstanbul merkezli, genç ve tutkulu bir yazılım girişimi.
                     Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.</p>
                 <div class="footer-social">
@@ -618,7 +591,6 @@
                     </a>
                 </div>
             </div>
-
             <div class="footer-col">
                 <h4 class="footer-col-title" data-i18n="footer_nav_title">Hızlı Linkler</h4>
                 <ul class="footer-links">
@@ -628,7 +600,6 @@
                     <li><a href="#contact" data-i18n="nav_contact">İletişim</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4 class="footer-col-title" data-i18n="footer_svc_title">Hizmetler</h4>
                 <ul class="footer-links">
@@ -639,7 +610,6 @@
                     <li><a href="#skills">Teknik SEO</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4 class="footer-col-title" data-i18n="contact_tag">İletişim</h4>
                 <ul class="footer-contact-list">
@@ -655,7 +625,9 @@
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                             <polyline points="22,6 12,13 2,6" />
                         </svg>
-                        <a href="mailto:email@ornek.com">email@ornek.com</a>
+                        <a href="/cdn-cgi/l/email-protection#5d38303c34311d322f333836733e3230"><span
+                                class="__cf_email__"
+                                data-cfemail="7a1f171b13163a1508141f1154191517">[email&#160;protected]</span></a>
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -666,11 +638,9 @@
                     </li>
                 </ul>
             </div>
-
         </div>
         <div class="footer-bottom">
             <span data-i18n="footer_copy">© 2025 StartUp Co. — Tüm hakları saklıdır.</span>
-            <span class="footer-heart">Made with 🖤 from İstanbul</span>
         </div>
     </footer>
 
