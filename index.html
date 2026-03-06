@@ -8,12 +8,12 @@
         content="İstanbul merkezli yazılım girişimi. Web geliştirme, mobil uygulama, SEO ve UI/UX tasarım alanlarında end-to-end dijital çözümler." />
     <meta name="keywords"
         content="web geliştirme, mobil uygulama, react, next.js, SEO, UI/UX, İstanbul, yazılım ajansı" />
-    <meta name="author" content="StartUp Co." />
-    <meta property="og:title" content="StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz" />
+    <meta name="author" content="devBino" />
+    <meta property="og:title" content="devBino — Fikirleri Ürüne Dönüştürüyoruz" />
     <meta property="og:description" content="İstanbul merkezli genç ve tutkulu yazılım girişimi." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://startupco.com.tr" />
-    <title>StartUp Co. — Fikirleri Ürüne Dönüştürüyoruz</title>
+    <title>devBino — Fikirleri Ürüne Dönüştürüyoruz</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet" />
@@ -25,7 +25,7 @@
     <!-- NAV -->
     <nav id="navbar">
         <div class="nav-inner">
-            <a class="nav-logo" href="#hero">startUp<span class="logo-dot">.</span></a>
+            <a class="nav-logo" href="#hero">devBino<span class="logo-dot">.</span></a>
             <div class="nav-right">
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
@@ -49,7 +49,7 @@
         <canvas id="hero-particles"></canvas>
         <div class="hero-inner">
             <h1 class="hero-title reveal" data-i18n="hero_title">
-                Fikirleri Ürüne<br><span class="hero-highlight">Dönüştürüyoruz.</span>
+                Dijitalde var olmanın<br><span class="hero-highlight">en kolay yolu.</span>
             </h1>
             <p class="hero-desc reveal" data-i18n="hero_desc">
                 Web & mobil uygulama geliştirme, SEO ve tasarım alanlarında genç ve enerjik bir ekiple projelerinizi
@@ -78,7 +78,7 @@
                     <div class="hero-stat-divider"></div>
                     <div class="hero-stat">
                         <span class="hero-stat-num">100%</span>
-                        <span class="hero-stat-label">Müşteri Memnuniyeti</span>
+                        <span class="hero-stat-label" data-i18n="stat4">Mutlu Müşteri</span>
                     </div>
                 </div>
 
@@ -89,10 +89,10 @@
     <!-- HAKKIMIZDA -->
     <section id="about" class="has-particles"><canvas class="section-particles" data-section="about"></canvas>
         <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="about_tag">// hakkımızda</p>
-            <h2 class="section-title reveal" data-i18n="about_title">Biz kimiz?</h2>
             <div class="about-grid">
                 <div class="about-left reveal">
+                    <p class="section-tag" data-i18n="about_tag">// hakkımızda</p>
+                    <h2 class="section-title" data-i18n="about_title">Biz kimiz?</h2>
                     <p data-i18n="about_p1">İstanbul'dan dünyaya açılmayı hedefleyen, <strong>genç ve tutkulu bir
                             yazılım girişimiyiz.</strong> Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler
                         sunuyoruz.</p>
@@ -103,22 +103,86 @@
                         için buradayız. 🚀</p>
                 </div>
                 <div class="about-right reveal">
-                    <div class="about-stats-grid">
-                        <div class="stat-box">
-                            <div class="stat-num">2024</div>
-                            <div class="stat-label" data-i18n="stat1">Kuruluş Yılı</div>
+                    <div class="about-process">
+                        <div class="process-step open">
+                            <div class="process-step-main">
+                                <div class="p-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 20h9" />
+                                        <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                    </svg>
+                                </div>
+                                <div class="p-content">
+                                    <span class="p-num">01</span>
+                                    <span class="p-name" data-i18n="process_1">Fikir</span>
+                                </div>
+                            </div>
+                            <div class="p-desc">
+                                <p data-i18n="process_1_desc">Projenizi dinliyor, hedeflerinizi anlıyor ve en iyi
+                                    yaklaşımı birlikte belirliyoruz.</p>
+                            </div>
+                            <div class="process-connector"></div>
                         </div>
-                        <div class="stat-box">
-                            <div class="stat-num">10+</div>
-                            <div class="stat-label" data-i18n="stat2">Tamamlanan Proje</div>
+                        <div class="process-step">
+                            <div class="process-step-main">
+                                <div class="p-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </div>
+                                <div class="p-content">
+                                    <span class="p-num">02</span>
+                                    <span class="p-name" data-i18n="process_2">Tasarım</span>
+                                </div>
+                            </div>
+                            <div class="p-desc">
+                                <p data-i18n="process_2_desc">Wireframe ve prototiplerle görsel kimliği oluşturuyoruz.
+                                    Onayınız olmadan ilerlemiyoruz.</p>
+                            </div>
+                            <div class="process-connector"></div>
                         </div>
-                        <div class="stat-box">
-                            <div class="stat-num">4</div>
-                            <div class="stat-label" data-i18n="stat3">Hizmet Alanı</div>
+                        <div class="process-step">
+                            <div class="process-step-main">
+                                <div class="p-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="16 18 22 12 16 6" />
+                                        <polyline points="8 6 2 12 8 18" />
+                                    </svg>
+                                </div>
+                                <div class="p-content">
+                                    <span class="p-num">03</span>
+                                    <span class="p-name" data-i18n="process_3">Geliştirme</span>
+                                </div>
+                            </div>
+                            <div class="p-desc">
+                                <p data-i18n="process_3_desc">Temiz, ölçeklenebilir kod. Sprint bazlı ilerliyoruz, her
+                                    adımda sizi bilgilendiriyoruz.</p>
+                            </div>
+                            <div class="process-connector"></div>
                         </div>
-                        <div class="stat-box">
-                            <div class="stat-num">100%</div>
-                            <div class="stat-label" data-i18n="stat4">Müşteri Memnuniyeti</div>
+                        <div class="process-step">
+                            <div class="process-step-main">
+                                <div class="p-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 17l10 5 10-5" />
+                                        <path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                </div>
+                                <div class="p-content">
+                                    <span class="p-num">04</span>
+                                    <span class="p-name" data-i18n="process_4">Lansman</span>
+                                </div>
+                            </div>
+                            <div class="p-desc">
+                                <p data-i18n="process_4_desc">Test, optimizasyon ve canlıya alma. Sonrasında da
+                                    yanınızdayız.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,7 +280,7 @@
     <section id="skills">
         <div class="section-inner">
             <p class="section-tag reveal" data-i18n="svc_tag">// nasıl_çalışıyoruz</p>
-            <h2 class="section-title reveal" data-i18n="svc_title">Nasıl Çalışıyoruz?</h2>
+            <h2 class="section-title reveal" data-i18n="svc_title">Nasıl çalışıyoruz?</h2>
 
             <div class="reveal-list">
                 <div class="rl-item">
@@ -399,7 +463,7 @@
             data-section="github-repos"></canvas>
         <div class="section-inner">
             <p class="section-tag reveal" data-i18n="github_tag">// github</p>
-            <h2 class="section-title reveal" data-i18n="github_title">Açık Kaynak Projelerimiz</h2>
+            <h2 class="section-title reveal" data-i18n="github_title">Açık kaynak projelerimiz</h2>
             <p class="section-sub reveal" data-i18n="github_sub">GitHub üzerindeki herkese açık repolarımız.</p>
             <div class="github-repos-grid">
 
@@ -565,7 +629,7 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-col footer-brand">
-                <a class="footer-logo" href="#hero">startUp<span class="logo-dot">.</span></a>
+                <a class="footer-logo" href="#hero">devBino<span class="logo-dot">.</span></a>
                 <p class="footer-desc" data-i18n="footer_desc">İstanbul merkezli, genç ve tutkulu bir yazılım girişimi.
                     Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.</p>
                 <div class="footer-social">
@@ -640,7 +704,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span data-i18n="footer_copy">© 2025 StartUp Co. — Tüm hakları saklıdır.</span>
+            <span data-i18n="footer_copy">© 2025 devBino — Tüm hakları saklıdır.</span>
         </div>
     </footer>
 

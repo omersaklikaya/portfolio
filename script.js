@@ -5,30 +5,34 @@ const translations = {
   tr: {
     nav_about:'Hakkımızda', nav_projects:'Projeler', nav_services:'Hizmetler', nav_contact:'İletişim',
     hero_badge:'İstanbul merkezli yazılım girişimi',
-    hero_title:'Fikirleri Ürüne<br><span class="hero-highlight">Dönüştürüyoruz.</span>',
+    hero_title:'Dijitalde var olmanın<br><span class="hero-highlight">en kolay yolu.</span>',
     hero_desc:'Web & mobil uygulama geliştirme, SEO ve tasarım alanlarında genç ve enerjik bir ekiple projelerinizi hayata geçiriyoruz.',
     hero_cta1:'Projelerimize Bak →', hero_cta2:'Bize Ulaşın',
     stat1:'Kuruluş', stat2:'Proje', stat3:'Hizmet',
     about_tag:'// hakkımızda', about_title:'Biz kimiz?',
     about_p1:'İstanbul\'dan dünyaya açılmayı hedefleyen, <strong>genç ve tutkulu bir yazılım girişimiyiz.</strong> Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.',
     about_p2:'Her projede sadece kod yazmıyoruz; <strong>markanızın dijital kimliğini</strong> birlikte inşa ediyoruz. Hızlı iletişim, şeffaf süreç ve kalıcı sonuçlar bizim çalışma biçimimizin özü.',
-    about_p3:'Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak için buradayız. 🚀',
+    about_p3:'Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak için buradayız.',
     proj_tag:'// projeler', proj_title:'Ürettiklerimiz', proj_sub:'Müşterilerimiz için geliştirdiğimiz bazı projeler.',
     p1_name:'E-Ticaret Platformu', p1_desc:'React ve Node.js ile geliştirilen tam kapsamlı bir e-ticaret platformu. Ödeme entegrasyonu, stok yönetimi ve gerçek zamanlı bildirimler.',
     p2_name:'Analitik Dashboard', p2_desc:'Gerçek zamanlı veri görselleştirmesi yapan bir analitik paneli. WebSocket ile canlı güncelleme, D3.js ile etkileşimli grafikler.',
     p3_name:'AI Asistan API', p3_desc:'OpenAI entegrasyonu ile oluşturulan akıllı asistan API\'ı. Rate limiting, caching ve kullanıcı oturum yönetimi içeriyor.',
-    svc_tag:'// nasıl_çalışıyoruz', svc_title:'Nasıl Çalışıyoruz?', svc_sub:'Teknik Yetkinliklerimiz',
+    svc_tag:'// nasıl_çalışıyoruz', svc_title:'Nasıl çalışıyoruz?', svc_sub:'Teknik Yetkinliklerimiz',
     rl_title_1:'Şeffaflık, her zaman.', rl_desc_1:'Projenizin her aşamasını sizinle paylaşıyoruz. Ne yapıldığını, neden yapıldığını ve ne zaman teslim edileceğini her zaman bilirsiniz.',
     rl_title_2:'Fikrinizi ciddiye alıyoruz.', rl_desc_2:'Fikirlerinizi sadece "müşteri isteği" olarak görmüyor, birlikte şekillendiriyor ve en iyi versiyonuna ulaştırıyoruz.',
     rl_title_3:'Hız ve kalite birbirini götürmez.', rl_desc_3:'Hızlı teslim ederiz — ama asla kaliteden taviz vermeyiz. Startup ruhuyla çalışır, kurumsal titizlikle teslim ederiz.',
     rl_title_4:'Proje biter. Ortaklık bitmez.', rl_desc_4:'Teslimat bir son değil, bir başlangıçtır. Ürününüz büyüdükçe biz de büyürüz — destek ve yeni hedeflerle yanınızda olmaya devam ederiz.',
-    stat4:'Müşteri Memnuniyeti',
+    stat4:'Mutlu Müşteri',
+    process_1:'Fikir', process_1_desc:'Projenizi dinliyor, hedeflerinizi anlıyor ve en iyi yaklaşımı birlikte belirliyoruz.',
+    process_2:'Tasarım', process_2_desc:'Wireframe ve prototiplerle görsel kimliği oluşturuyoruz. Onayınız olmadan ilerlemiyoruz.',
+    process_3:'Geliştirme', process_3_desc:'Temiz, ölçeklenebilir kod. Sprint bazlı ilerliyoruz, her adımda sizi bilgilendiriyoruz.',
+    process_4:'Lansman', process_4_desc:'Test, optimizasyon ve canlıya alma. Sonrasında da yanınızdayız.',
     github_soon:'Yeni bir açık kaynak proje geliyor...',
     github_soon_name:'yakında',
     svc_web:'⟨/⟩ Web Geliştirme', svc_mob:'📱 Mobil Uygulama', svc_des:'🎨 Tasarım & SEO',
     svc_ecom:'E-Ticaret Siteleri', svc_appstore:'App Store Yayınlama', svc_push:'Push Bildirim & API',
     svc_uiux:'UI / UX Tasarımı', svc_brand:'Marka Kimliği', svc_content:'İçerik Stratejisi',
-    github_tag:'// github', github_title:'Açık Kaynak Projelerimiz', github_sub:'GitHub üzerindeki herkese açık repolarımız.',
+    github_tag:'// github', github_title:'Açık kaynak projelerimiz', github_sub:'GitHub üzerindeki herkese açık repolarımız.',
     contact_tag:'// iletişim', contact_title:'Projenizi konuşalım.',
     contact_sub:'Yeni bir ürün mü çıkarmak istiyorsunuz? Mevcut sitenizi mi yenilemek istiyorsunuz? Fikrinizi bize anlatın, gerisi bizde.',
     contact_info_loc_label:'Konum', contact_info_email_label:'E-posta', contact_info_hours_label:'Çalışma Saatleri',
@@ -37,24 +41,24 @@ const translations = {
     form_success_title:'Mesajınız alındı!', form_success_sub:'En kısa sürede size dönüş yapacağız.',
     footer_desc:'İstanbul merkezli, genç ve tutkulu bir yazılım girişimi. Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.',
     footer_nav_title:'Hızlı Linkler', footer_svc_title:'Hizmetler',
-    footer_hours:'Pzt–Cum, 09:00–18:00', footer_copy:'© 2025 StartUp Co. — Tüm hakları saklıdır.',
+    footer_hours:'Pzt–Cum, 09:00–18:00', footer_copy:'© 2025 devBino — Tüm hakları saklıdır.',
   },
   en: {
     nav_about:'About', nav_projects:'Projects', nav_services:'Services', nav_contact:'Contact',
     hero_badge:'Istanbul-based software startup',
-    hero_title:'Turning Ideas<br><span class="hero-highlight">Into Products.</span>',
+    hero_title:'The easiest way<br><span class="hero-highlight">to go digital.</span>',
     hero_desc:'We bring your projects to life with a young and energetic team specializing in web & mobile development, SEO, and design.',
     hero_cta1:'View Our Work →', hero_cta2:'Contact Us',
     stat1:'Founded', stat2:'Projects', stat3:'Services',
-    about_tag:'// about_us', about_title:'Who are we?',
+    about_tag:'// about_us', about_title:'Who we are',
     about_p1:'We are a <strong>young and passionate software startup</strong> based in Istanbul, aiming to go global. We offer end-to-end solutions in web, mobile, SEO, and design.',
     about_p2:'We don\'t just write code; we <strong>build your brand\'s digital identity</strong> together. Fast communication, transparent process, and lasting results are at the core of how we work.',
-    about_p3:'We\'re here to deliver <strong>enterprise-quality work</strong> without losing our startup spirit. 🚀',
-    proj_tag:'// projects', proj_title:'What We Build', proj_sub:'Some of the projects we developed for our clients.',
+    about_p3:'We\'re here to deliver <strong>enterprise-quality work</strong> without losing our startup spirit.',
+    proj_tag:'// projects', proj_title:'Our projects', proj_sub:'Some of the projects we developed for our clients.',
     p1_name:'E-Commerce Platform', p1_desc:'A full-featured e-commerce platform built with React and Node.js. Payment integration, inventory management, and real-time notifications.',
     p2_name:'Analytics Dashboard', p2_desc:'An analytics panel with real-time data visualization. Live updates via WebSocket and interactive charts with D3.js.',
     p3_name:'AI Assistant API', p3_desc:'An intelligent assistant API built with OpenAI integration. Includes rate limiting, caching, and user session management.',
-    svc_tag:'// how_we_work', svc_title:'How We Work', svc_sub:'Technical Expertise',
+    svc_tag:'// how_we_work', svc_title:'How we work?', svc_sub:'Technical Expertise',
     svc_web:'⟨/⟩ Web Development', svc_mob:'📱 Mobile Apps', svc_des:'🎨 Design & SEO',
     svc_ecom:'E-Commerce Sites', svc_appstore:'App Store Publishing', svc_push:'Push Notifications & API',
     svc_uiux:'UI / UX Design', svc_brand:'Brand Identity', svc_content:'Content Strategy',
@@ -62,10 +66,14 @@ const translations = {
     rl_title_2:'We take your idea seriously.', rl_desc_2:"We don't see your ideas as just a client request — we shape them together and bring them to their best version.",
     rl_title_3:'Speed and quality are not mutually exclusive.', rl_desc_3:'We deliver fast — but never compromise on quality. We work with a startup mindset and deliver with corporate precision.',
     rl_title_4:'The project ends. The partnership does not.', rl_desc_4:'Delivery is not an end, it\'s a beginning. As your product grows, we grow too — we stay by your side with support and new goals.',
-    stat4:'Client Satisfaction',
+    stat4:'Happy Clients',
+    process_1:'Idea', process_1_desc:'We listen to your project, understand your goals, and determine the best approach together.',
+    process_2:'Design', process_2_desc:'We build the visual identity with wireframes and prototypes. We never move forward without your approval.',
+    process_3:'Development', process_3_desc:'Clean, scalable code. We work in sprints and keep you informed at every step.',
+    process_4:'Launch', process_4_desc:'Testing, optimization, and going live. We stay by your side afterwards too.',
     github_soon:'A new open source project is coming...',
     github_soon_name:'coming soon',
-    github_tag:'// github', github_title:'Our Open Source Projects', github_sub:'Our public repositories on GitHub.',
+    github_tag:'// github', github_title:'Our open source projects', github_sub:'Our public repositories on GitHub.',
     contact_tag:'// contact', contact_title:'Let\'s talk about your project.',
     contact_sub:'Want to launch a new product? Redesign your existing site? Tell us your idea — we\'ll handle the rest.',
     contact_info_loc_label:'Location', contact_info_email_label:'Email', contact_info_hours_label:'Working Hours',
@@ -74,7 +82,7 @@ const translations = {
     form_success_title:'Message received!', form_success_sub:'We\'ll get back to you as soon as possible.',
     footer_desc:'Istanbul-based, young and passionate software startup. We offer end-to-end solutions in web, mobile, SEO, and design.',
     footer_nav_title:'Quick Links', footer_svc_title:'Services',
-    footer_hours:'Mon–Fri, 09:00–18:00', footer_copy:'© 2025 StartUp Co. — All rights reserved.',
+    footer_hours:'Mon–Fri, 09:00–18:00', footer_copy:'© 2025 devBino — All rights reserved.',
   }
 };
 
@@ -303,6 +311,17 @@ document.querySelectorAll('.section-particles').forEach(canvas => {
   } else {
     canvas.remove();
   }
+});
+
+/* ─────────────────────────────────────────────
+   ABOUT PROCESS ACCORDION
+───────────────────────────────────────────── */
+document.querySelectorAll('.about-process .process-step').forEach(step => {
+  step.addEventListener('click', () => {
+    if (step.classList.contains('open')) return;
+    document.querySelectorAll('.about-process .process-step').forEach(s => s.classList.remove('open'));
+    step.classList.add('open');
+  });
 });
 
 /* ─────────────────────────────────────────────
