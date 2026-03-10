@@ -12,7 +12,7 @@ const translations = {
     about_tag:'// hakkımızda', about_title:'Biz kimiz?',
     about_p1:'İstanbul\'dan dünyaya açılmayı hedefleyen, <strong>genç ve tutkulu bir yazılım girişimiyiz.</strong> Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.',
     about_p2:'Her projede sadece kod yazmıyoruz; <strong>markanızın dijital kimliğini</strong> birlikte inşa ediyoruz. Hızlı iletişim, şeffaf süreç ve kalıcı sonuçlar bizim çalışma biçimimizin özü.',
-    about_p3:'Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak için buradayız. 🚀',
+    about_p3:'Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak için buradayız.',
     proj_tag:'// projeler', proj_title:'Ürettiklerimiz', proj_sub:'Müşterilerimiz için geliştirdiğimiz bazı projeler.',
     p1_name:'E-Ticaret Platformu', p1_desc:'React ve Node.js ile geliştirilen tam kapsamlı bir e-ticaret platformu. Ödeme entegrasyonu, stok yönetimi ve gerçek zamanlı bildirimler.',
     p2_name:'Analitik Dashboard', p2_desc:'Gerçek zamanlı veri görselleştirmesi yapan bir analitik paneli. WebSocket ile canlı güncelleme, D3.js ile etkileşimli grafikler.',
@@ -29,7 +29,7 @@ const translations = {
     process_4:'Lansman', process_4_desc:'Test, optimizasyon ve canlıya alma. Sonrasında da yanınızdayız.',
     github_soon:'Yeni bir açık kaynak proje geliyor...',
     github_soon_name:'yakında',
-    svc_web:'⟨/⟩ Web Geliştirme', svc_mob:'Mobil Uygulama', svc_des:'🎨 Tasarım & SEO',
+    svc_web:'⟨/⟩ Web Geliştirme', svc_mob:'📱 Mobil Uygulama', svc_des:'🎨 Tasarım & SEO',
     svc_ecom:'E-Ticaret Siteleri', svc_appstore:'App Store Yayınlama', svc_push:'Push Bildirim & API',
     svc_uiux:'UI / UX Tasarımı', svc_brand:'Marka Kimliği', svc_content:'İçerik Stratejisi',
     github_tag:'// github', github_title:'Açık kaynak projelerimiz', github_sub:'GitHub üzerindeki herkese açık repolarımız.',
@@ -53,13 +53,13 @@ const translations = {
     about_tag:'// about_us', about_title:'Who we are',
     about_p1:'We are a <strong>young and passionate software startup</strong> based in Istanbul, aiming to go global. We offer end-to-end solutions in web, mobile, SEO, and design.',
     about_p2:'We don\'t just write code; we <strong>build your brand\'s digital identity</strong> together. Fast communication, transparent process, and lasting results are at the core of how we work.',
-    about_p3:'We\'re here to deliver <strong>enterprise-quality work</strong> without losing our startup spirit. 🚀',
+    about_p3:'We\'re here to deliver <strong>enterprise-quality work</strong> without losing our startup spirit.',
     proj_tag:'// projects', proj_title:'Our projects', proj_sub:'Some of the projects we developed for our clients.',
     p1_name:'E-Commerce Platform', p1_desc:'A full-featured e-commerce platform built with React and Node.js. Payment integration, inventory management, and real-time notifications.',
     p2_name:'Analytics Dashboard', p2_desc:'An analytics panel with real-time data visualization. Live updates via WebSocket and interactive charts with D3.js.',
     p3_name:'AI Assistant API', p3_desc:'An intelligent assistant API built with OpenAI integration. Includes rate limiting, caching, and user session management.',
     svc_tag:'// how_we_work', svc_title:'How we work?', svc_sub:'Technical Expertise',
-    svc_web:'⟨/⟩ Web Development', svc_mob:'Mobile Apps', svc_des:'🎨 Design & SEO',
+    svc_web:'⟨/⟩ Web Development', svc_mob:'📱 Mobile Apps', svc_des:'🎨 Design & SEO',
     svc_ecom:'E-Commerce Sites', svc_appstore:'App Store Publishing', svc_push:'Push Notifications & API',
     svc_uiux:'UI / UX Design', svc_brand:'Brand Identity', svc_content:'Content Strategy',
     rl_title_1:'Transparency, always.', rl_desc_1:'We share every stage of your project with you. You always know what was done, why it was done, and when it will be delivered.',
@@ -168,7 +168,7 @@ function handleContactForm() {
   btn.disabled      = true;
   btnText.textContent = '...';
 
-  fetch('http://localhost:3000/api/contact', {
+  fetch('/.netlify/functions/contact', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify({ name, email, subject, message })
