@@ -180,7 +180,14 @@ function handleContactForm() {
       document.getElementById('contact-form-box').style.display = 'none';
       document.getElementById('cf-success').style.display       = 'block';
     } else {
-      btnText.textContent = data.error || 'Hata oluştu.';
+      if (data.resendDetail) {
+        console.error('Resend:', data.resendStatus, data.resendDetail);
+      }
+      const short =
+        data.resendDetail && data.resendDetail.length < 140
+          ? data.resendDetail
+          : (data.error || 'Hata oluştu.');
+      btnText.textContent = short;
       btn.disabled = false;
     }
   })
