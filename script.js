@@ -168,9 +168,7 @@ function handleContactForm() {
   btn.disabled      = true;
   btnText.textContent = '...';
 
-  const apiUrl = (typeof window !== 'undefined' && window.location.origin)
-    ? window.location.origin + '/.netlify/functions/contact'
-    : '/.netlify/functions/contact';
+  const apiUrl = '/api/contact';
   fetch(apiUrl, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
