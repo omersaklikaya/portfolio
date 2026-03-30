@@ -18,6 +18,17 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+/** Resend reply_to: plain email or "Name <email>" — no < > in display name */
+function sanitizeReplyDisplayName(n) {
+  const s = String(n).replace(/[\r\n<>"]/g, " ").trim();
+  return s.slice(0, 100) || "Ziyaretci";
+}
+
+function isValidEmail(s) {
+  const v = String(s).trim();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
+
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -49,6 +60,14 @@ export async function POST(request) {
     );
   }
 
+  const replyEmail = String(email).trim();
+  if (!isValidEmail(replyEmail)) {
+    return jsonResponse(
+      { success: false, error: "Gecerli bir e-posta adresi girin." },
+      400
+    );
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_EMAIL;
 
@@ -68,7 +87,7 @@ export async function POST(request) {
         body: JSON.stringify({
           from: "Portfolyo <onboarding@resend.dev>",
           to: [toEmail],
-          reply_to: [String(email).trim()],
+          reply_to: `${sanitizeReplyDisplayName(name)} <${replyEmail}>`,
           subject: subject
             ? `[Portfolyo] ${String(subject)}`
             : `[Portfolyo] ${String(name)} mesaj gonderdi`,
