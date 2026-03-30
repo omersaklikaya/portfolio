@@ -4,39 +4,41 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-function sendJson(res, statusCode, payload) {
-  res.status(statusCode).setHeader("Content-Type", "application/json");
-  Object.entries(corsHeaders).forEach(([key, value]) => {
-    res.setHeader(key, value);
+function jsonResponse(body, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json; charset=utf-8",
+    },
   });
-  res.send(JSON.stringify(payload));
 }
 
-module.exports = async function handler(req, res) {
-  if (req.method === "OPTIONS") {
-    Object.entries(corsHeaders).forEach(([key, value]) => {
-      res.setHeader(key, value);
-    });
-    return res.status(204).end();
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: corsHeaders });
+}
+
+export async function POST(request) {
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return jsonResponse({ success: false, error: "Gecersiz istek." }, 400);
   }
 
-  if (req.method !== "POST") {
-    return sendJson(res, 405, { success: false, error: "Method Not Allowed" });
+  const { name, email, subject, message } = data || {};
+
+  if (!name || !email || !message) {
+    return jsonResponse(
+      { success: false, error: "Ad, e-posta ve mesaj zorunludur." },
+      400
+    );
   }
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const toEmail = process.env.CONTACT_EMAIL;
 
   try {
-    const { name, email, subject, message } = req.body || {};
-
-    if (!name || !email || !message) {
-      return sendJson(res, 400, {
-        success: false,
-        error: "Ad, e-posta ve mesaj zorunludur.",
-      });
-    }
-
-    const apiKey = process.env.RESEND_API_KEY;
-    const toEmail = process.env.CONTACT_EMAIL;
-
     if (apiKey && toEmail) {
       const resendRes = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -48,12 +50,14 @@ module.exports = async function handler(req, res) {
           from: "Portfolyo <onboarding@resend.dev>",
           to: [toEmail],
           reply_to: email,
-          subject: subject ? `[Portfolyo] ${subject}` : `[Portfolyo] ${name} mesaj gönderdi`,
+          subject: subject
+            ? `[Portfolyo] ${subject}`
+            : `[Portfolyo] ${name} mesaj gonderdi`,
           html: `
             <h3>Yeni iletisim formu mesaji</h3>
-            <p><strong>Isim:</strong> ${name}</p>
-            <p><strong>E-posta:</strong> ${email}</p>
-            <p><strong>Konu:</strong> ${subject || "-"}</p>
+            <p><strong>Isim:</strong> ${String(name)}</p>
+            <p><strong>E-posta:</strong> ${String(email)}</p>
+            <p><strong>Konu:</strong> ${subject ? String(subject) : "-"}</p>
             <p><strong>Mesaj:</strong></p>
             <p>${String(message).replace(/\n/g, "<br>")}</p>
           `,
@@ -63,10 +67,10 @@ module.exports = async function handler(req, res) {
       if (!resendRes.ok) {
         const errBody = await resendRes.text();
         console.error("Resend API error:", resendRes.status, errBody);
-        return sendJson(res, 500, {
-          success: false,
-          error: "E-posta gonderilemedi.",
-        });
+        return jsonResponse(
+          { success: false, error: "E-posta gonderilemedi." },
+          500
+        );
       }
     } else {
       console.log("New contact message (no email config):", {
@@ -77,12 +81,12 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    return sendJson(res, 200, { success: true });
+    return jsonResponse({ success: true }, 200);
   } catch (err) {
     console.error(err);
-    return sendJson(res, 500, {
-      success: false,
-      error: "Sunucu hatasi, tekrar deneyin.",
-    });
+    return jsonResponse(
+      { success: false, error: "Sunucu hatasi, tekrar deneyin." },
+      500
+    );
   }
-};
+}
