@@ -320,33 +320,6 @@ section { padding: 6rem 2rem; }
 
 .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
-.hero-bottom {
-  display:         flex;
-  align-items:     center;
-  justify-content: center;
-  padding-top:     1.5rem;
-  border-top:      1px solid var(--border);
-  gap:             2rem;
-  flex-wrap:       wrap;
-  width:           100%;
-}
-
-.hero-stats {
-  display:     flex;
-  align-items: center;
-  gap:         2rem;
-}
-.hero-stat { display: flex; flex-direction: column; }
-.hero-stat-num {
-  font-size:      1.4rem;
-  font-weight:    800;
-  letter-spacing: -0.03em;
-  color:          var(--text);
-  line-height:    1;
-}
-.hero-stat-label { font-size: 0.72rem; color: var(--muted); font-weight: 500; margin-top: 2px; }
-.hero-stat-divider { width: 1px; height: 32px; background: var(--border); }
-
 
 
 /* ─────────────────────────────────────────────
@@ -473,6 +446,7 @@ section { padding: 6rem 2rem; }
   color:           var(--muted);
   text-decoration: none;
   transition:      color 0.2s;
+  cursor:          pointer;
 }
 .project-link:hover { color: var(--text); }
 
@@ -734,7 +708,6 @@ footer {
 
 @media (max-width: 480px) {
   section { padding: 4rem 1.25rem; }
-  .hero-stats { flex-wrap: wrap; gap: 1rem; }
   .about-stats-grid { grid-template-columns: 1fr 1fr; }
 }
 
@@ -982,12 +955,11 @@ footer {
 .has-particles > *:not(.section-particles) { position: relative; z-index: 1; }
 .has-particles .section-inner { position: relative; z-index: 1; }
 
-/* Projeler, github kartları — tıklanabilir kalsın */
-.project-card,
+/* GitHub kartları — tıklanabilir; proje kartları sadece görsel hover */
 .github-repo-card,
-.project-link,
-.project-card *,
 .github-repo-card * { position: relative; z-index: 2; }
+.project-card,
+.project-card * { position: relative; z-index: 2; }
 
 /* ─────────────────────────────────────────────
    ABOUT PROCESS WIDGET
