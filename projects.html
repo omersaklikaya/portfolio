@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>devBino | Projeler</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="index.html#hero">devBino<span class="logo-dot">.</span></a>
+            <div class="nav-right">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html#about" data-i18n="nav_about">Hakkımızda</a></li>
+                    <li><a href="projects.html" data-i18n="nav_projects">Projeler</a></li>
+                    <li><a href="index.html#skills" data-i18n="nav_services">// hizmetler</a></li>
+                    <li><a href="index.html#contact" data-i18n="nav_contact">// iletişim</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+                    <button class="lang-btn" onclick="setLang('en')">EN</button>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="projects" class="has-particles">
+        <canvas class="section-particles" data-section="projects"></canvas>
+        <div class="section-inner">
+            <p class="section-tag" data-i18n="proj_tag">// projeler</p>
+            <h1 class="section-title" data-i18n="proj_all_title">Tüm Projeler</h1>
+            <p class="section-sub" data-i18n="proj_all_sub">Geliştirdiğimiz tüm proje ve ürünleri bu sayfada bulabilirsiniz.</p>
+
+            <div class="projects-grid">
+                <a href="https://clearcutting.vercel.app/" target="_blank" rel="noopener" class="project-card">
+                    <div class="project-preview">
+                        <img src="clearcut.png" alt="ClearCut uygulama gorunumu" loading="lazy" />
+                    </div>
+                    <div class="project-icon">
+                        <img src="clearcut.ico" alt="ClearCut favicon" loading="lazy" />
+                    </div>
+                    <div class="project-name" data-i18n="p1_name">ClearCut</div>
+                    <p class="project-desc" data-i18n="p1_desc">Yapay zekâ destekli arka plan kaldırma uygulaması. Görsel yükleyin, arka plan
+                        otomatik silinsin; tüm işlem cihazda gerçekleşsin.</p>
+                </a>
+
+                <a href="https://qr-force.vercel.app/" target="_blank" rel="noopener" class="project-card">
+                    <div class="project-preview">
+                        <img src="qrforce.png" alt="QR Force uygulama gorunumu" loading="lazy" />
+                    </div>
+                    <div class="project-icon">
+                        <img src="qrforce.ico" alt="QR Force favicon" loading="lazy" />
+                    </div>
+                    <div class="project-name" data-i18n="p2_name">QR Force</div>
+                    <p class="project-desc" data-i18n="p2_desc">Her türlü içerik için hızlı QR kod üretme uygulaması. İçeriği girin, hata
+                        düzeltme ve boyut ayarını seçin, ardından PNG veya SVG olarak indirin.</p>
+                </a>
+
+                <a href="https://renkle.vercel.app/" target="_blank" rel="noopener" class="project-card">
+                    <div class="project-preview">
+                        <img src="renkle.png" alt="Renkle uygulama gorunumu" loading="lazy" />
+                    </div>
+                    <div class="project-icon">
+                        <img src="renkle.ico" alt="Renkle favicon" loading="lazy" />
+                    </div>
+                    <div class="project-name" data-i18n="p3_name">Renkle</div>
+                    <p class="project-desc" data-i18n="p3_desc">Rengi görüp ezberleyerek aynı tonu yeniden üretmeye dayalı renk hafıza oyunu.
+                        Tahmin doğruluğunu anlık yüzde ile takip edin.</p>
+                </a>
+
+                <a href="https://paletsnap.vercel.app/" target="_blank" rel="noopener" class="project-card">
+                    <div class="project-preview">
+                        <img src="paletsnap.png" alt="PaletSnap uygulama gorunumu" loading="lazy" />
+                    </div>
+                    <div class="project-icon">
+                        <img src="paletsnap.ico" alt="PaletSnap favicon" loading="lazy" />
+                    </div>
+                    <div class="project-name" data-i18n="p6_name">PaletSnap</div>
+                    <p class="project-desc" data-i18n="p6_desc">Her görselden profesyonel renk paleti çıkaran araç.
+                        Baskın renkleri anında ayırır, HEX/RGB/HSL formatında tek tıkla kopyalamanızı sağlar.</p>
+                </a>
+
+                <a href="https://bullsburger.xyz/" target="_blank" rel="noopener" class="project-card">
+                    <div class="project-preview">
+                        <img src="bullsburger.png" alt="Bulls Burger site gorunumu" loading="lazy" />
+                    </div>
+                    <div class="project-icon">
+                        <img src="bullsburger.ico" alt="Bulls Burger favicon" loading="lazy" />
+                    </div>
+                    <div class="project-name" data-i18n="p4_name">Bulls Burger</div>
+                    <p class="project-desc" data-i18n="p4_desc">Smash burger odaklı restoran markası web sitesi. Menü, şubeler, hikâye ve
+                        iletişim alanlarıyla marka deneyimini dijitale taşıyor.</p>
+                </a>
+
+                <div class="project-card project-card-soon">
+                    <div class="project-icon"><span style="font-weight:700;color:var(--muted);">+</span></div>
+                    <div class="project-name" data-i18n="p5_name">yakında<span class="repo-soon-cursor">_</span></div>
+                    <p class="project-desc" data-i18n="p5_desc">Yeni bir proje kartı çok yakında burada olacak.</p>
+                </div>
+            </div>
+
+            <div class="projects-more" style="margin-top:2rem;">
+                <a href="index.html" class="btn btn-ghost" data-i18n="proj_back">← Ana sayfaya dön</a>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/03/07/12/20260307120211-QLONTAR7.js" defer></script>
+</body>
+</html>

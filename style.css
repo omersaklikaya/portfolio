@@ -480,6 +480,7 @@ section { padding: 6rem 2rem; }
   cursor:          pointer;
 }
 .project-link:hover { color: var(--text); }
+.projects-more { margin-top: 1.5rem; display: flex; justify-content: center; }
 
 /* ─────────────────────────────────────────────
    SERVICES
