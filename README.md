@@ -1,6 +1,6 @@
-# devBino — Portfolio
+# CodeGrid — Portfolio
 
-A static, bilingual (Turkish / English) marketing site for **devBino**: services, featured projects, GitHub highlights, and a contact form. A dedicated **[projects.html](projects.html)** page lists the full project catalog.
+A static, bilingual (Turkish / English) marketing site for **CodeGrid**: services, featured projects, GitHub highlights, and a contact form. A dedicated **[projects.html](projects.html)** page lists the full project catalog.
 
 ## Tech stack
 

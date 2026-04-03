@@ -44,7 +44,7 @@ const translations = {
     form_success_title:'Mesajınız alındı!', form_success_sub:'En kısa sürede size dönüş yapacağız.',
     footer_desc:'İstanbul merkezli, genç ve tutkulu bir yazılım girişimi. Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.',
     footer_nav_title:'// hızlı_linkler', footer_svc_title:'// hizmetler',
-    footer_hours:'Pzt–Cum, 09:00–18:00', footer_copy:'© 2025 devBino — Tüm hakları saklıdır.',
+    footer_hours:'Pzt–Cum, 09:00–18:00', footer_copy:'© 2025 CodeGrid — Tüm hakları saklıdır.',
   },
   en: {
     nav_about:'About', nav_projects:'Projects', nav_services:'Services', nav_contact:'Contact',
@@ -88,7 +88,7 @@ const translations = {
     form_success_title:'Message received!', form_success_sub:'We\'ll get back to you as soon as possible.',
     footer_desc:'Istanbul-based, young and passionate software startup. We offer end-to-end solutions in web, mobile, SEO, and design.',
     footer_nav_title:'// quick_links', footer_svc_title:'// services',
-    footer_hours:'Mon–Fri, 09:00–18:00', footer_copy:'© 2025 devBino — All rights reserved.',
+    footer_hours:'Mon–Fri, 09:00–18:00', footer_copy:'© 2025 CodeGrid — All rights reserved.',
   }
 };
 

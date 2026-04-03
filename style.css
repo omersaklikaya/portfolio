@@ -86,6 +86,8 @@ nav {
   flex-shrink:    0;
 }
 .logo-dot { color: var(--accent-dark); }
+.logo-code { color: var(--text); }
+.logo-grid { color: #7effb2; }
 
 .nav-links {
   display:    flex;
