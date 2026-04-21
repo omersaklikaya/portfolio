@@ -1,4 +1,10 @@
 {
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "dev": "serve . -l 5173"
+  },
+  "devDependencies": {
+    "serve": "^14.2.5"
+  }
 }
