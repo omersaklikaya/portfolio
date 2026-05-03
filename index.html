@@ -5,162 +5,105 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="İstanbul merkezli yazılım girişimi. Web geliştirme, mobil uygulama, SEO ve UI/UX tasarım alanlarında end-to-end dijital çözümler." />
-    <meta name="keywords"
-        content="web geliştirme, mobil uygulama, react, next.js, SEO, UI/UX, İstanbul, yazılım ajansı" />
-    <meta name="author" content="CodeGrid" />
-    <meta property="og:title" content="CodeGrid — Fikirleri Ürüne Dönüştürüyoruz" />
-    <meta property="og:description" content="İstanbul merkezli genç ve tutkulu yazılım girişimi." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://startupco.com.tr" />
-    <title>CodeGrid</title>
+        content="CodeGrid — İstanbul merkezli yazılım girişimi. Web, mobil, SEO ve tasarım ile dijital ürünler geliştiriyoruz." />
+    <title>CodeGrid — Fikirleri Ürüne Dönüştürüyoruz</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
 </head>
 
 <body>
 
     <!-- NAV -->
-    <nav id="navbar">
-        <div class="nav-inner">
-            <a class="nav-logo" href="#hero"><span class="logo-code">Code</span><span class="logo-grid">Grid</span></a>
-            <div class="nav-right">
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
-                    <li><a href="projects.html" data-i18n="nav_projects">Projeler</a></li>
-                    <li><a href="#skills" data-i18n="nav_services">// hizmetler</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">// iletişim</a></li>
-                </ul>
-                <div class="lang-switcher">
-                    <button class="lang-btn active" onclick="setLang('tr')">TR</button>
-                    <button class="lang-btn" onclick="setLang('en')">EN</button>
-                </div>
-                <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+    <header class="nav" id="nav">
+        <a href="#hero" class="nav-logo">Code<span>Grid</span></a>
+        <nav class="nav-links">
+            <a href="#about" data-i18n="nav_about">Hakkımızda</a>
+            <a href="#projects" data-i18n="nav_projects">Projeler</a>
+            <a href="#skills" data-i18n="nav_services">SSS</a>
+            <a href="#contact" data-i18n="nav_contact">İletişim</a>
+        </nav>
+        <div class="nav-right">
+            <button type="button" class="lang-toggle" id="langToggle">TR / EN</button>
+            <a href="#contact" class="nav-cta" data-i18n="nav_cta">Bize Ulaşın →</a>
+            <button class="nav-burger" id="navBurger" aria-label="Menüyü aç">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mm-link" data-i18n="nav_about">Hakkımızda</a>
+        <a href="#projects" class="mm-link" data-i18n="nav_projects">Projeler</a>
+        <a href="#skills" class="mm-link" data-i18n="nav_services">SSS</a>
+        <a href="#contact" class="mm-link" data-i18n="nav_contact">İletişim</a>
+        <a href="#contact" class="mm-cta" data-i18n="nav_cta">Bize Ulaşın →</a>
+    </div>
 
     <!-- HERO -->
-    <section id="hero">
-        <canvas id="hero-particles"></canvas>
+    <section class="hero" id="hero">
         <div class="hero-inner">
-            <h1 class="hero-title reveal" data-i18n="hero_title">
-                Dijitalde var olmanın<br><span class="hero-highlight">en kolay yolu.</span>
+            <h1 class="hero-title" data-i18n="hero_title">
+                Dijitalde var olmanın en<br>
+                <em>kolay</em> yolu.
             </h1>
-            <p class="hero-desc reveal" data-i18n="hero_desc">
-                Web & mobil uygulama geliştirme, SEO ve tasarım alanlarında genç ve enerjik bir ekiple projelerinizi
-                hayata geçiriyoruz.
-            </p>
-            <div class="hero-cta reveal">
-                <a href="#projects" class="btn btn-primary" data-i18n="hero_cta1">Projelerimize Bak →</a>
-                <a href="#contact" class="btn btn-ghost" data-i18n="hero_cta2">Bize Ulaşın</a>
+            <p class="hero-sub" data-i18n="hero_desc">Web &amp; mobil uygulama geliştirme, SEO ve tasarım alanlarında genç ve enerjik bir ekiple projelerinizi hayata geçiriyoruz.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn-orange fade-in" data-i18n="hero_cta1">Projelerimize Bak →</a>
+                <a href="#contact" class="btn-ghost fade-in" data-i18n="hero_cta2">Bize Ulaşın</a>
             </div>
         </div>
+        <div class="hero-accent-line"></div>
     </section>
 
-    <!-- HAKKIMIZDA -->
-    <section id="about" class="has-particles"><canvas class="section-particles" data-section="about"></canvas>
-        <div class="section-inner">
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
             <div class="about-grid">
-                <div class="about-left reveal">
-                    <p class="section-tag" data-i18n="about_tag">// hakkımızda</p>
-                    <h2 class="section-title" data-i18n="about_title">Biz kimiz?</h2>
-                    <p data-i18n="about_p1">İstanbul'dan dünyaya açılmayı hedefleyen, <strong>genç ve tutkulu bir
-                            yazılım girişimiyiz.</strong> Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler
-                        sunuyoruz.</p>
-                    <p data-i18n="about_p2">Her projede sadece kod yazmıyoruz; <strong>markanızın dijital
-                            kimliğini</strong> birlikte inşa ediyoruz. Hızlı iletişim, şeffaf süreç ve kalıcı sonuçlar
-                        bizim çalışma biçimimizin özü.</p>
-                    <p data-i18n="about_p3">Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak
-                        için buradayız.</p>
+                <div class="about-text">
+                    <h2 data-i18n="about_title">Biz Kimiz?</h2>
+                    <p data-i18n="about_p1">İstanbul'dan dünyaya açılmayı hedefleyen, <strong>genç ve tutkulu bir yazılım
+                            girişimiyiz.</strong> Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.
+                    </p>
+                    <p data-i18n="about_p2">Her projede sadece kod yazmıyoruz; <strong>markanızın dijital kimliğini</strong> birlikte inşa
+                        ediyoruz. Hızlı iletişim, şeffaf süreç ve kalıcı sonuçlar bizim çalışma biçimimizin özü.</p>
+                    <p data-i18n="about_p3">Startup ruhunu kaybetmeden <strong>kurumsal kalitede</strong> iş çıkarmak için buradayız.</p>
                 </div>
-                <div class="about-right reveal">
-                    <div class="about-process">
-                        <div class="process-step open">
-                            <div class="process-step-main">
-                                <div class="p-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 20h9" />
-                                        <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
-                                    </svg>
-                                </div>
-                                <div class="p-content">
-                                    <span class="p-num">01</span>
-                                    <span class="p-name" data-i18n="process_1">Fikir</span>
-                                </div>
-                            </div>
-                            <div class="p-desc">
-                                <p data-i18n="process_1_desc">Projenizi dinliyor, hedeflerinizi anlıyor ve en iyi
-                                    yaklaşımı birlikte belirliyoruz.</p>
-                            </div>
-                            <div class="process-connector"></div>
+                <div class="about-steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-body">
+                            <div class="step-title" data-i18n="step_1">Fikir</div>
+                            <div class="step-desc" data-i18n="step_1_desc">Projenizi dinliyor, hedeflerinizi anlıyor ve en iyi yaklaşımı
+                                birlikte belirliyoruz.</div>
                         </div>
-                        <div class="process-step">
-                            <div class="process-step-main">
-                                <div class="p-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
-                                        <circle cx="12" cy="12" r="3" />
-                                    </svg>
-                                </div>
-                                <div class="p-content">
-                                    <span class="p-num">02</span>
-                                    <span class="p-name" data-i18n="process_2">Tasarım</span>
-                                </div>
-                            </div>
-                            <div class="p-desc">
-                                <p data-i18n="process_2_desc">Wireframe ve prototiplerle görsel kimliği oluşturuyoruz.
-                                    Onayınız olmadan ilerlemiyoruz.</p>
-                            </div>
-                            <div class="process-connector"></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-body">
+                            <div class="step-title" data-i18n="step_2">Tasarım</div>
+                            <div class="step-desc" data-i18n="step_2_desc">Wireframe ve prototiplerle görsel kimliği oluşturuyoruz. Onayınız
+                                olmadan ilerlemiyoruz.</div>
                         </div>
-                        <div class="process-step">
-                            <div class="process-step-main">
-                                <div class="p-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="16 18 22 12 16 6" />
-                                        <polyline points="8 6 2 12 8 18" />
-                                    </svg>
-                                </div>
-                                <div class="p-content">
-                                    <span class="p-num">03</span>
-                                    <span class="p-name" data-i18n="process_3">Geliştirme</span>
-                                </div>
-                            </div>
-                            <div class="p-desc">
-                                <p data-i18n="process_3_desc">Temiz, ölçeklenebilir kod. Sprint bazlı ilerliyoruz, her
-                                    adımda sizi bilgilendiriyoruz.</p>
-                            </div>
-                            <div class="process-connector"></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <div class="step-body">
+                            <div class="step-title" data-i18n="step_3">Geliştirme</div>
+                            <div class="step-desc" data-i18n="step_3_desc">Temiz, ölçeklenebilir kod. Sprint bazlı ilerliyoruz, her adımda sizi
+                                bilgilendiriyoruz.</div>
                         </div>
-                        <div class="process-step">
-                            <div class="process-step-main">
-                                <div class="p-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                        <path d="M2 17l10 5 10-5" />
-                                        <path d="M2 12l10 5 10-5" />
-                                    </svg>
-                                </div>
-                                <div class="p-content">
-                                    <span class="p-num">04</span>
-                                    <span class="p-name" data-i18n="process_4">Lansman</span>
-                                </div>
-                            </div>
-                            <div class="p-desc">
-                                <p data-i18n="process_4_desc">Test, optimizasyon ve canlıya alma. Sonrasında da
-                                    yanınızdayız.</p>
-                            </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">04</div>
+                        <div class="step-body">
+                            <div class="step-title" data-i18n="step_4">Lansman</div>
+                            <div class="step-desc" data-i18n="step_4_desc">Test, optimizasyon ve canlıya alma. Sonrasında da yanınızdayız.</div>
                         </div>
                     </div>
                 </div>
@@ -168,514 +111,238 @@
         </div>
     </section>
 
-    <!-- PROJELER -->
-    <section id="projects" class="has-particles"><canvas class="section-particles" data-section="projects"></canvas>
-        <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="proj_tag">// projeler</p>
-            <h2 class="section-title reveal" data-i18n="proj_title">Ürettiklerimiz</h2>
-            <p class="section-sub reveal" data-i18n="proj_sub">Müşterilerimiz için geliştirdiğimiz bazı projeler.</p>
-            <div class="projects-grid">
-                <a href="https://bullsburger.xyz/" target="_blank" rel="noopener"
-                    class="project-card reveal">
-                    <div class="project-preview">
-                        <img src="sitepics/bullsburger.avif" alt="Bulls Burger site gorunumu" loading="lazy" />
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="proj_title">Projelerimiz</h2>
+                <p class="section-sub" data-i18n="proj_sub">Müşterilerimiz için geliştirdiğimiz bazı projeler.</p>
+            </div>
+            <div class="proj-grid">
+
+                <a href="https://toolboxapp-beta.vercel.app" target="_blank" rel="noopener" class="proj-card">
+                    <div class="proj-card-top">
+                        <img src="sitepics/codegrid.avif" alt="CodeGrid-Tools site görünümü" class="proj-thumb" />
                     </div>
-                    <div class="project-icon">
-                        <img src="siteicons/bullsburger.ico" alt="Bulls Burger favicon" loading="lazy" />
-                    </div>
-                    <div class="project-name" data-i18n="p4_name">Bulls Burger</div>
-                    <p class="project-desc" data-i18n="p4_desc">Smash burger odaklı restoran markası web sitesi. Menü,
-                        şubeler, hikâye ve iletişim alanlarıyla marka deneyimini dijitale taşıyor.</p>
-                    <div class="project-tags">
-                        <span class="tag">Restaurant</span><span class="tag">Brand Website</span>
-                        <span class="tag">UI/UX</span><span class="tag">Responsive</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link">↗ Demo</span>
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/codegrid.ico" alt="CodeGrid favicon" class="proj-favicon" />
+                            <span class="proj-tag" data-i18n="proj_tag_cg">Çevrimiçi Araçlar · SaaS</span>
+                        </div>
+                        <div class="proj-title" data-i18n="p9_name">CodeGrid-Tools</div>
+                        <div class="proj-desc" data-i18n="p9_desc">PDF, görsel, medya, veri, QR ve metin odaklı ücretsiz online araç
+                            platformu. Tüm işlemler tarayıcıda çalışır ve dosyalar sunucuya yüklenmeden güvenli şekilde işlenir.</div>
+                        <div class="proj-badges">
+                            <span class="badge">PDF</span>
+                            <span class="badge" data-i18n="idx_badge_dev">Geliştirici</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
                     </div>
                 </a>
 
-                <a href="https://asddenemesite.vercel.app/" target="_blank" rel="noopener"
-                    class="project-card reveal">
-                    <div class="project-preview">
-                        <img src="sitepics/masteremlak.avif" alt="Master Emlak site gorunumu" loading="lazy" />
+                <a href="https://masteremlak.vercel.app/" target="_blank" rel="noopener" class="proj-card">
+                    <div class="proj-card-top">
+                        <img src="sitepics/masteremlak.avif" alt="Master Emlak site görünümü" class="proj-thumb" />
                     </div>
-                    <div class="project-icon">
-                        <img src="siteicons/masteremlak.ico" alt="Master Emlak favicon" loading="lazy" />
-                    </div>
-                    <div class="project-name" data-i18n="p8_name">Master Emlak</div>
-                    <p class="project-desc" data-i18n="p8_desc">Gayrimenkulde yeni nesil yaklaşım sunan emlak sitesi.
-                        Konut, ticari ve arsa kategorilerinde arama, portföy ve blog içerikleriyle kapsamlı bir deneyim
-                        sunuyor.</p>
-                    <div class="project-tags">
-                        <span class="tag">Real Estate</span><span class="tag">Portfolio</span>
-                        <span class="tag">Blog</span><span class="tag">Responsive</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link">↗ Demo</span>
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/masteremlak.ico" alt="Master Emlak favicon" class="proj-favicon" />
+                            <span class="proj-tag" data-i18n="proj_tag_me">Gayrimenkul · Portföy</span>
+                        </div>
+                        <div class="proj-title" data-i18n="p8_name">Master Emlak</div>
+                        <div class="proj-desc" data-i18n="p8_desc">Gayrimenkulde yeni nesil yaklaşım sunan emlak sitesi.
+                            Konut, ticari ve arsa kategorilerinde arama, portföy ve blog içerikleriyle kapsamlı bir deneyim sunuyor.</div>
+                        <div class="proj-badges">
+                            <span class="badge">Blog</span>
+                            <span class="badge">Responsive</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
                     </div>
                 </a>
 
-                <a href="https://toolboxapp-beta.vercel.app" target="_blank" rel="noopener"
-                    class="project-card reveal">
-                    <div class="project-preview">
-                        <img src="sitepics/codegrid.avif" alt="CodeGrid Tools site gorunumu" loading="lazy" />
+                <a href="https://renkle.vercel.app/" target="_blank" rel="noopener" class="proj-card">
+                    <div class="proj-card-top">
+                        <img src="sitepics/renkle.avif" alt="renkle site görünümü" class="proj-thumb" />
                     </div>
-                    <div class="project-icon">
-                        <img src="siteicons/codegrid.ico" alt="CodeGrid Tools favicon" loading="lazy" />
-                    </div>
-                    <div class="project-name" data-i18n="p9_name">CodeGrid Tools</div>
-                    <p class="project-desc" data-i18n="p9_desc">PDF, görsel, medya, veri, QR ve metin odaklı ücretsiz
-                        online araç platformu. Tüm işlemler tarayıcıda çalışır ve dosyalar sunucuya yüklenmeden güvenli
-                        şekilde işlenir.</p>
-                    <div class="project-tags">
-                        <span class="tag">Online Tools</span><span class="tag">PDF</span>
-                        <span class="tag">Image</span><span class="tag">Developer</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link">↗ Demo</span>
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/renkle.ico" alt="renkle favicon" class="proj-favicon" />
+                            <span class="proj-tag" data-i18n="proj_tag_rk">Oyun · Renk</span>
+                        </div>
+                        <div class="proj-title" data-i18n="renkle_name">renkle</div>
+                        <div class="proj-desc" data-i18n="renkle_desc">Günlük renk bulmacaları ve mini oyunlar: günün rengini tahmin et, renkleri
+                            karşılaştır ve renk odaklı keşif modları.</div>
+                        <div class="proj-badges">
+                            <span class="badge" data-i18n="idx_badge_daily">Günlük görev</span>
+                            <span class="badge">Responsive</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
                     </div>
                 </a>
 
             </div>
-            <div class="projects-more reveal">
-                <a href="projects.html" class="btn btn-ghost">Tüm projeleri gör →</a>
+            <div class="proj-more fade-in">
+                <a href="projects.html" class="btn-orange" data-i18n="proj_all">
+                    Tüm projeleri gör →
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- HİZMETLER -->
-    <section id="skills">
-        <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="svc_tag">// nasıl_çalışıyoruz</p>
-            <h2 class="section-title reveal" data-i18n="svc_title">Nasıl çalışıyoruz?</h2>
+    <!-- FAQ -->
+    <section class="faq" id="skills">
+        <div class="container">
+            <h2 class="fade-in" data-i18n="skills_title">Sık Sorulan Sorular</h2>
+            <div class="faq-list fade-in">
 
-            <div class="reveal-list">
-                <div class="rl-item">
-                    <div class="rl-num">01</div>
-                    <div class="rl-body">
-                        <div class="rl-bar"></div>
-                        <h3 class="rl-title" data-i18n="rl_title_1">Şeffaflık, her zaman.</h3>
-                        <p class="rl-desc" data-i18n="rl_desc_1">Projenizin her aşamasını sizinle paylaşıyoruz. Ne
-                            yapıldığını, neden yapıldığını ve ne zaman teslim edileceğini her zaman bilirsiniz.</p>
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span data-i18n="faq_q1">Bir projeye başlamak için ne yapmalıyım?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p data-i18n="faq_a1">Bize e-posta veya iletişim formu üzerinden ulaşmanız yeterli. Projenizin kapsamını, hedeflerinizi ve varsa referans siteleri paylaşın, gerisi bizde.</p>
                     </div>
                 </div>
-                <div class="rl-item">
-                    <div class="rl-num">02</div>
-                    <div class="rl-body">
-                        <div class="rl-bar"></div>
-                        <h3 class="rl-title" data-i18n="rl_title_2">Fikrinizi ciddiye alıyoruz.</h3>
-                        <p class="rl-desc" data-i18n="rl_desc_2">Fikirlerinizi sadece "müşteri isteği" olarak görmüyor,
-                            birlikte şekillendiriyor ve en iyi versiyonuna ulaştırıyoruz.</p>
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span data-i18n="faq_q2">Proje ne kadar sürer?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p data-i18n="faq_a2">Kapsama göre değişir. Basit bir kurumsal site 1-2 haftada, orta ölçekli projeler 3-6 haftada, büyük ve kompleks ürünler 2-3 ayda teslim edilir. Görüşme aşamasında size net bir zaman çizelgesi sunarız.</p>
                     </div>
                 </div>
-                <div class="rl-item">
-                    <div class="rl-num">03</div>
-                    <div class="rl-body">
-                        <div class="rl-bar"></div>
-                        <h3 class="rl-title" data-i18n="rl_title_3">Hız ve kalite birbirini götürmez.</h3>
-                        <p class="rl-desc" data-i18n="rl_desc_3">Hızlı teslim ederiz — ama asla kaliteden taviz
-                            vermeyiz. Startup ruhuyla çalışır, kurumsal titizlikle teslim ederiz.</p>
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span data-i18n="faq_q3">Fiyatlandırma nasıl işliyor?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p data-i18n="faq_a3">Her proje kendine özgü olduğu için sabit fiyat listemiz yok. Proje kapsamını dinledikten sonra size özel bir teklif hazırlıyoruz. İlk görüşme tamamen ücretsiz.</p>
                     </div>
                 </div>
-                <div class="rl-item">
-                    <div class="rl-num">04</div>
-                    <div class="rl-body">
-                        <div class="rl-bar"></div>
-                        <h3 class="rl-title" data-i18n="rl_title_4">Proje biter. Ortaklık bitmez.</h3>
-                        <p class="rl-desc" data-i18n="rl_desc_4">Teslimat bir son değil, bir başlangıçtır. Ürününüz
-                            büyüdükçe biz de büyürüz — destek ve yeni hedeflerle yanınızda olmaya devam ederiz.</p>
+
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span data-i18n="faq_q4">Proje tesliminden sonra destek veriyor musunuz?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p data-i18n="faq_a4">Evet. Teslim sonrası bakım, güncelleme ve teknik destek için aylık paketlerimiz mevcut. Ayrıca teslimat sonrası ilk 30 gün içinde çıkan hataları ücretsiz düzeltiyoruz.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="section-divider reveal">
-                <span class="section-divider-text" data-i18n="svc_sub">Teknik Yetkinliklerimiz</span>
-            </div>
-
-            <div class="skills-layout">
-                <div class="skill-group reveal">
-                    <div class="skill-group-title" data-i18n="svc_web">⟨/⟩ Web Geliştirme</div>
-                    <ul class="skill-list">
-                        <li class="skill-item"><span class="skill-item-name">React / Next.js</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name">Node.js / Backend API</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_ecom">E-Ticaret
-                                Siteleri</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name">WordPress / CMS</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="skill-group reveal">
-                    <div class="skill-group-title" data-i18n="svc_mob">📱 Mobil Uygulama</div>
-                    <ul class="skill-list">
-                        <li class="skill-item"><span class="skill-item-name">React Native</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name">iOS & Android</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_appstore">App Store
-                                Yayınlama</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_push">Push Bildirim &
-                                API</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="skill-group reveal">
-                    <div class="skill-group-title" data-i18n="svc_des">🎨 Tasarım & SEO</div>
-                    <ul class="skill-list">
-                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_uiux">UI / UX
-                                Tasarımı</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_brand">Marka Kimliği</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name">Teknik SEO</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item"><span class="skill-item-name" data-i18n="svc_content">İçerik
-                                Stratejisi</span>
-                            <div class="skill-level">
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot active"></div>
-                                <div class="skill-dot"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GITHUB REPOS -->
-    <section id="github-repos" class="has-particles"><canvas class="section-particles"
-            data-section="github-repos"></canvas>
-        <div class="section-inner">
-            <p class="section-tag reveal" data-i18n="github_tag">// github</p>
-            <h2 class="section-title reveal" data-i18n="github_title">Açık kaynak projelerimiz</h2>
-            <p class="section-sub reveal" data-i18n="github_sub">GitHub üzerindeki herkese açık repolarımız.</p>
-            <div class="github-repos-grid">
-
-                <a href="https://github.com/omersaklikaya/startup-hooks" target="_blank" rel="noopener"
-                    class="github-repo-card reveal">
-                    <div class="github-repo-header">
-                        <div class="github-repo-name">startup-hooks</div>
-                        <div class="github-repo-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                            </svg>
-                        </div>
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">
+                        <span data-i18n="faq_q5">Mevcut sitemizi yenileyebilir misiniz?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p data-i18n="faq_a5">Evet, redesign en sık aldığımız projelerden biri. Mevcut sitenizi analiz ediyor, neyin korunacağına neyin yenileneceğine birlikte karar veriyor ve sıfırdan daha iyi bir versiyon üretiyoruz.</p>
                     </div>
-                    <div class="github-repo-desc">React projelerinde sıkça ihtiyaç duyulan custom hook koleksiyonu.
-                        useDebounce, useLocalStorage, useFetch ve daha fazlası — sıfır bağımlılık, TypeScript
-                        desteğiyle.</div>
-                    <div class="github-repo-meta">
-                        <span>
-                            <div class="github-repo-lang-dot" style="background:#3178c6;"></div> TypeScript
-                        </span>
-                        <span>↗ github.com</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/omersaklikaya/startup-ui" target="_blank" rel="noopener"
-                    class="github-repo-card reveal">
-                    <div class="github-repo-header">
-                        <div class="github-repo-name">startup-ui</div>
-                        <div class="github-repo-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="github-repo-desc">Copy-paste edilebilir, dependency-free, production-ready Tailwind CSS
-                        bileşenleri. HTML + React versiyonları, dark mode ve erişilebilirlik desteğiyle.</div>
-                    <div class="github-repo-meta">
-                        <span>
-                            <div class="github-repo-lang-dot" style="background:#38bdf8;"></div> Tailwind CSS
-                        </span>
-                        <span>↗ github.com</span>
-                    </div>
-                </a>
-
-                <div class="github-repo-card reveal github-repo-soon">
-                    <div class="github-repo-header">
-                        <div class="github-repo-name"><span data-i18n="github_soon_name">yakında</span><span
-                                class="repo-soon-cursor">_</span></div>
-                        <div class="github-repo-icon" style="opacity:0.3;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="github-repo-desc" style="color:#ccc;" data-i18n="github_soon">Yeni bir açık kaynak proje
-                        geliyor...</div>
-                    <div class="github-repo-meta" style="opacity:0.3;"><span>coming soon</span></div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- İLETİŞİM -->
-    <section id="contact" class="has-particles"><canvas class="section-particles" data-section="contact"></canvas>
-        <div class="section-inner">
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 data-i18n="contact_title">İletişime Geçin</h2>
+            <p class="section-sub" data-i18n="contact_sub">Yeni bir ürün mü çıkarmak istiyorsunuz? Mevcut sitenizi mi yenilemek istiyorsunuz?
+                Fikrinizi bize anlatın, gerisi bizde.</p>
             <div class="contact-grid">
+                <div class="contact-info">
 
-                <div class="contact-left reveal">
-                    <p class="section-tag" data-i18n="contact_tag">// iletişim</p>
-                    <h2 class="section-title" data-i18n="contact_title">Projenizi konuşalım.</h2>
-                    <p class="contact-sub-text" data-i18n="contact_sub">Yeni bir ürün mü çıkarmak istiyorsunuz? Mevcut
-                        sitenizi mi yenilemek istiyorsunuz? Fikrinizi bize anlatın, gerisi bizde.</p>
-                    <ul class="contact-info-list">
-                        <li>
-                            <div class="contact-info-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="contact-info-label" data-i18n="contact_info_loc_label">Konum</div>
-                                <div class="contact-info-val">İstanbul, Türkiye</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="contact-info-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                    <polyline points="22,6 12,13 2,6" />
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="contact-info-label" data-i18n="contact_info_email_label">E-posta</div>
-                                <a class="contact-info-val contact-info-link"
-                                    href="mailto:codegridteknoloji@gmail.com">codegridteknoloji@gmail.com</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="contact-info-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <polyline points="12 6 12 12 16 14" />
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="contact-info-label" data-i18n="contact_info_hours_label">Çalışma Saatleri
-                                </div>
-                                <div class="contact-info-val" data-i18n="footer_hours">Pzt–Cum, 09:00–18:00</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="contact-form-wrap reveal">
-                    <div class="contact-form-inner" id="contact-form-box">
-                        <div class="cf-row cf-row-2">
-                            <div class="cf-field">
-                                <label class="cf-label" for="cf-name" data-i18n="form_name">Adınız</label>
-                                <input class="cf-input" id="cf-name" type="text" placeholder="Ada Lovelace"
-                                    autocomplete="off" />
-                            </div>
-                            <div class="cf-field">
-                                <label class="cf-label" for="cf-email" data-i18n="form_email">E-posta</label>
-                                <input class="cf-input" id="cf-email" type="email" placeholder="ada@ornek.com"
-                                    autocomplete="off" />
-                            </div>
-                        </div>
-                        <div class="cf-field">
-                            <label class="cf-label" for="cf-subject" data-i18n="form_subject">Konu</label>
-                            <input class="cf-input" id="cf-subject" type="text" placeholder="Proje fikri, teklif..."
-                                autocomplete="off" />
-                        </div>
-                        <div class="cf-field">
-                            <label class="cf-label" for="cf-message" data-i18n="form_message">Mesajınız</label>
-                            <textarea class="cf-input cf-textarea" id="cf-message"
-                                placeholder="Projeniz hakkında kısaca bilgi verin..."></textarea>
-                        </div>
-                        <button class="cf-submit" id="cf-submit" onclick="handleContactForm()">
-                            <span id="cf-btn-text" data-i18n="form_send">Gönder →</span>
-                        </button>
-                        <p class="cf-note" data-i18n="form_note">En kısa sürede size dönüş yapacağız.</p>
+                    <div class="contact-available">
+                        <div class="contact-available-dot"></div>
+                        <span data-i18n="contact_available">Şu an yeni proje alıyoruz</span>
                     </div>
-                    <div class="cf-success" id="cf-success" style="display:none;">
-                        <div class="cf-success-icon">✓</div>
-                        <h3 data-i18n="form_success_title">Mesajınız alındı!</h3>
-                        <p data-i18n="form_success_sub">En kısa sürede size dönüş yapacağız.</p>
-                    </div>
-                </div>
 
+                    <div class="contact-item">
+                        <label data-i18n="contact_loc_label">Konum</label>
+                        <span>İstanbul, Türkiye</span>
+                    </div>
+                    <div class="contact-item">
+                        <label data-i18n="contact_email_label">E-posta</label>
+                        <a href="mailto:codegridteknoloji@gmail.com"
+                            class="contact-mail">codegridteknoloji@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <label data-i18n="contact_hours_label">Çalışma Saatleri</label>
+                        <span data-i18n="footer_hours">Pzt–Cum, 09:00–18:00</span>
+                    </div>
+
+                    <div class="contact-social-title" data-i18n="contact_social_title">Bizi Takip Edin</div>
+
+                    <div class="contact-response" data-i18n="contact_response">Ortalama yanıt süresi:
+                        <strong>24 saat içinde</strong></div>
+
+                </div>
+                <form class="contact-form" id="contactForm" novalidate>
+                    <input type="text" name="name" data-i18n-placeholder="form_name" placeholder="Adınız" required />
+                    <input type="email" name="email" data-i18n-placeholder="form_email" placeholder="E-posta" required />
+                    <input type="text" name="subject" data-i18n-placeholder="form_subject" placeholder="Konu" required />
+                    <textarea name="message" data-i18n-placeholder="form_message" placeholder="Mesajınız" rows="4" required></textarea>
+                    <button type="submit" class="btn-submit" data-i18n="form_send">Gönder →</button>
+                </form>
+            </div>
+            <div class="contact-success" id="contactSuccess">
+                <div class="success-icon">✓</div>
+                <h3 data-i18n="form_success_title">Mesajınız alındı!</h3>
+                <p data-i18n="form_success_sub">En kısa sürede size dönüş yapacağız.</p>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-col footer-brand">
-                <a class="footer-logo" href="#hero"><span class="logo-code">Code</span><span
-                        class="logo-grid">Grid</span></a>
-                <p class="footer-desc" data-i18n="footer_desc">İstanbul merkezli, genç ve tutkulu bir yazılım girişimi.
-                    Web, mobil, SEO ve tasarım alanlarında end-to-end çözümler sunuyoruz.</p>
-                <div class="footer-social">
-                    <a href="https://github.com/omersaklikaya" target="_blank" class="footer-social-link"
-                        aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" class="footer-social-link" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
-                            <rect x="2" y="9" width="4" height="12" />
-                            <circle cx="4" cy="4" r="2" />
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="footer-social-link" aria-label="Twitter/X">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                    </a>
-                </div>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <a href="#hero" class="footer-logo">Code<span>Grid</span></a>
+                <p>İstanbul merkezli, genç ve tutkulu bir yazılım girişimi. Web, mobil, SEO ve tasarım alanlarında
+                    end-to-end çözümler sunuyoruz.</p>
             </div>
             <div class="footer-col">
-                <h4 class="footer-col-title" data-i18n="footer_nav_title">// hızlı_linkler</h4>
-                <ul class="footer-links">
-                    <li><a href="#about" data-i18n="nav_about">Hakkımızda</a></li>
-                    <li><a href="projects.html" data-i18n="nav_projects">Projeler</a></li>
-                    <li><a href="#skills" data-i18n="nav_services">// hizmetler</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">// iletişim</a></li>
+                <div class="footer-col-title" data-i18n="footer_nav_title">Hızlı Linkler</div>
+                <ul>
+                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#projects">Projeler</a></li>
+                    <li><a href="#skills" data-i18n="nav_services">SSS</a></li>
+                    <li><a href="#contact">İletişim</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4 class="footer-col-title" data-i18n="footer_svc_title">// hizmetler</h4>
-                <ul class="footer-links">
+                <div class="footer-col-title" data-i18n="footer_svc_title">Hizmetler</div>
+                <ul>
                     <li><a href="#skills">React / Next.js</a></li>
                     <li><a href="#skills">Node.js / API</a></li>
-                    <li><a href="#skills" data-i18n="svc_mob">Mobil Uygulama</a></li>
-                    <li><a href="#skills" data-i18n="svc_uiux">UI / UX Tasarımı</a></li>
+                    <li><a href="#skills">Mobil Uygulama</a></li>
+                    <li><a href="#skills">UI / UX Tasarımı</a></li>
                     <li><a href="#skills">Teknik SEO</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4 class="footer-col-title" data-i18n="contact_tag">// iletişim</h4>
-                <ul class="footer-contact-list">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                            <circle cx="12" cy="10" r="3" />
-                        </svg>
-                        <span>İstanbul, Türkiye</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        <a href="mailto:codegridteknoloji@gmail.com">codegridteknoloji@gmail.com</a>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10" />
-                            <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        <span data-i18n="footer_hours">Pzt–Cum, 09:00–18:00</span>
-                    </li>
+                <div class="footer-col-title" data-i18n="contact_tag">İletişim</div>
+                <ul>
+                    <li>İstanbul, Türkiye</li>
+                    <li><a href="mailto:codegridteknoloji@gmail.com">codegridteknoloji@gmail.com</a></li>
+                    <li>Pzt–Cum, 09:00–18:00</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <span data-i18n="footer_copy">© 2025 CodeGrid — Tüm hakları saklıdır.</span>
+            <div class="container">
+                <span>© 2025 CodeGrid — Tüm hakları saklıdır.</span>
+            </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/03/07/12/20260307120211-QLONTAR7.js" defer></script>
 </body>
 
 </html>

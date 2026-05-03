@@ -1,98 +1,438 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeGrid | Projeler</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+        .projects-page-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background: var(--white);
+            border-bottom: 1.5px solid var(--black);
+            box-sizing: border-box;
+            padding: calc(var(--nav-h) + 48px) 0 60px;
+        }
+
+        .projects-page-section .container {
+            width: 100%;
+        }
+
+        .projects-page-section h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: var(--black);
+            line-height: 1.0;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .projects-page-section .page-sub {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .proj-grid-full {
+            border: 1.5px solid var(--black);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .proj-grid-full .proj-card {
+            border-right: 1.5px solid var(--black);
+            border-bottom: none;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.2s ease;
+            text-decoration: none;
+        }
+
+        .proj-grid-full .proj-card:nth-child(3n) {
+            border-right: none;
+        }
+
+        .proj-grid-full .proj-card:nth-child(n+4) {
+            border-top: 1.5px solid var(--black);
+        }
+
+        .proj-grid-full .proj-card:hover {
+            background: var(--gray-100);
+        }
+
+        .proj-card-top {
+            overflow: hidden;
+            border-bottom: 1.5px solid var(--black);
+            aspect-ratio: 16/7;
+        }
+
+        .proj-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .proj-card:hover .proj-thumb {
+            transform: scale(1.03);
+        }
+
+        .proj-card-body {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .proj-meta {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 8px;
+        }
+
+        .proj-favicon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .proj-tag-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--orange);
+            text-transform: uppercase;
+        }
+
+        .proj-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .proj-desc {
+            font-size: 12px;
+            color: var(--gray-600);
+            line-height: 1.55;
+            margin-bottom: 12px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .proj-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+        }
+
+        .proj-link {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        .proj-card-soon {
+            cursor: default !important;
+        }
+
+        .proj-card-soon:hover {
+            background: var(--gray-100) !important;
+        }
+
+        .proj-soon-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 180px;
+            padding: 24px 18px;
+        }
+
+        .proj-soon-plus {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--gray-200);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .proj-soon-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gray-400);
+            margin-bottom: 5px;
+        }
+
+        .proj-soon-desc {
+            font-size: 12px;
+            color: var(--gray-400);
+            line-height: 1.5;
+        }
+
+        .soon-cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0
+            }
+        }
+
+        .proj-back {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .proj-grid-full {
+                grid-template-columns: 1fr;
+            }
+
+            .proj-grid-full .proj-card {
+                border-right: none;
+                border-bottom: 1.5px solid var(--black);
+            }
+
+            .proj-grid-full .proj-card:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <nav id="navbar">
-        <div class="nav-inner">
-            <a class="nav-logo" href="index.html#hero"><span class="logo-code">Code</span><span
-                    class="logo-grid">Grid</span></a>
-            <div class="nav-right">
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html#about" data-i18n="nav_about">Hakkımızda</a></li>
-                    <li><a href="projects.html" data-i18n="nav_projects">Projeler</a></li>
-                    <li><a href="index.html#skills" data-i18n="nav_services">// hizmetler</a></li>
-                    <li><a href="index.html#contact" data-i18n="nav_contact">// iletişim</a></li>
-                </ul>
-                <div class="lang-switcher">
-                    <button class="lang-btn active" onclick="setLang('tr')">TR</button>
-                    <button class="lang-btn" onclick="setLang('en')">EN</button>
-                </div>
-                <button class="hamburger" id="hamburger" aria-label="Menü" aria-expanded="false">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+
+    <!-- NAV -->
+    <header class="nav" id="nav">
+        <a href="index.html#hero" class="nav-logo">Code<span>Grid</span></a>
+        <nav class="nav-links">
+            <a href="index.html#about" data-i18n="nav_about">Hakkımızda</a>
+            <a href="index.html#projects" data-i18n="nav_projects">Projeler</a>
+            <a href="index.html#skills" data-i18n="nav_services">SSS</a>
+            <a href="index.html#contact" data-i18n="nav_contact">İletişim</a>
+        </nav>
+        <div class="nav-right">
+            <button type="button" class="lang-toggle" id="langToggle">TR / EN</button>
+            <a href="index.html#contact" class="nav-cta" data-i18n="nav_cta">Bize Ulaşın →</a>
+            <button class="nav-burger" id="navBurger" aria-label="Menüyü aç">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </nav>
+    </header>
 
-    <section id="projects" class="has-particles">
-        <canvas class="section-particles" data-section="projects"></canvas>
-        <div class="section-inner">
-            <p class="section-tag" data-i18n="proj_tag">// projeler</p>
-            <h1 class="section-title" data-i18n="proj_all_title">Tüm Projeler</h1>
-            <p class="section-sub" data-i18n="proj_all_sub">Geliştirdiğimiz tüm proje ve ürünleri bu sayfada bulabilirsiniz.</p>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#about" class="mm-link" data-i18n="nav_about">Hakkımızda</a>
+        <a href="index.html#projects" class="mm-link" data-i18n="nav_projects">Projeler</a>
+        <a href="index.html#skills" class="mm-link" data-i18n="nav_services">SSS</a>
+        <a href="index.html#contact" class="mm-link" data-i18n="nav_contact">İletişim</a>
+        <a href="index.html#contact" class="mm-cta" data-i18n="nav_cta">Bize Ulaşın →</a>
+    </div>
 
-            <div class="projects-grid">
-                <a href="https://bullsburger.xyz/" target="_blank" rel="noopener" class="project-card">
-                    <div class="project-preview">
-                        <img src="sitepics/bullsburger.avif" alt="Bulls Burger site gorunumu" loading="lazy" />
+    <!-- PROJECTS -->
+    <section class="projects-page-section">
+        <div class="container">
+            <h1 data-i18n="proj_all_title">Tüm Projeler</h1>
+            <p class="page-sub" data-i18n="proj_all_sub">Geliştirdiğimiz tüm proje ve ürünleri bu sayfada
+                bulabilirsiniz.</p>
+
+            <div class="proj-grid-full">
+
+                <a href="https://toolboxapp-beta.vercel.app" target="_blank" rel="noopener" class="proj-card fade-in">
+                    <div class="proj-card-top">
+                        <img src="sitepics/codegrid.avif" alt="CodeGrid-Tools" class="proj-thumb" loading="lazy" />
                     </div>
-                    <div class="project-icon">
-                        <img src="siteicons/bullsburger.ico" alt="Bulls Burger favicon" loading="lazy" />
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/codegrid.ico" alt="" class="proj-favicon" />
+                            <span class="proj-tag-label">Online Tools · SaaS</span>
+                        </div>
+                        <div class="proj-title" data-i18n="p9_name">CodeGrid-Tools</div>
+                        <div class="proj-desc" data-i18n="p9_desc">PDF, görsel, medya, veri, QR ve metin odaklı ücretsiz
+                            online araç platformu. Tüm işlemler tarayıcıda çalışır ve dosyalar sunucuya yüklenmeden
+                            güvenli şekilde işlenir.</div>
+                        <div class="proj-badges">
+                            <span class="badge">PDF</span>
+                            <span class="badge">Image</span>
+                            <span class="badge">Developer</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
                     </div>
-                    <div class="project-name" data-i18n="p4_name">Bulls Burger</div>
-                    <p class="project-desc" data-i18n="p4_desc">Smash burger odaklı restoran markası web sitesi. Menü, şubeler, hikâye ve
-                        iletişim alanlarıyla marka deneyimini dijitale taşıyor.</p>
                 </a>
 
-                <a href="https://asddenemesite.vercel.app/" target="_blank" rel="noopener" class="project-card">
-                    <div class="project-preview">
-                        <img src="sitepics/masteremlak.avif" alt="Master Emlak site gorunumu" loading="lazy" />
+                <a href="https://masteremlak.vercel.app/" target="_blank" rel="noopener" class="proj-card fade-in">
+                    <div class="proj-card-top">
+                        <img src="sitepics/masteremlak.avif" alt="Master Emlak" class="proj-thumb" loading="lazy" />
                     </div>
-                    <div class="project-icon">
-                        <img src="siteicons/masteremlak.ico" alt="Master Emlak favicon" loading="lazy" />
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/masteremlak.ico" alt="" class="proj-favicon" />
+                            <span class="proj-tag-label">Real Estate · Portfolio</span>
+                        </div>
+                        <div class="proj-title" data-i18n="p8_name">Master Emlak</div>
+                        <div class="proj-desc" data-i18n="p8_desc">Gayrimenkulde yeni nesil yaklaşım sunan emlak sitesi.
+                            Konut, ticari ve arsa kategorilerinde arama, portföy ve blog içerikleriyle kapsamlı bir
+                            deneyim sunuyor.</div>
+                        <div class="proj-badges">
+                            <span class="badge">Real Estate</span>
+                            <span class="badge">Blog</span>
+                            <span class="badge">Responsive</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
                     </div>
-                    <div class="project-name" data-i18n="p8_name">Master Emlak</div>
-                    <p class="project-desc" data-i18n="p8_desc">Gayrimenkulde yeni nesil yaklaşım sunan emlak sitesi.
-                        Konut, ticari ve arsa kategorilerinde arama, portföy ve blog içerikleriyle kapsamlı bir deneyim
-                        sunuyor.</p>
                 </a>
 
-                <a href="https://toolboxapp-beta.vercel.app" target="_blank" rel="noopener" class="project-card">
-                    <div class="project-preview">
-                        <img src="sitepics/codegrid.avif" alt="CodeGrid Tools site gorunumu" loading="lazy" />
+                <a href="https://renkle.vercel.app/" target="_blank" rel="noopener" class="proj-card fade-in">
+                    <div class="proj-card-top">
+                        <img src="sitepics/renkle.avif" alt="renkle — günlük renk bulmacaları" class="proj-thumb"
+                            loading="lazy" />
                     </div>
-                    <div class="project-icon">
-                        <img src="siteicons/codegrid.ico" alt="CodeGrid Tools favicon" loading="lazy" />
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/renkle.ico" alt="" class="proj-favicon" />
+                            <span class="proj-tag-label">Oyun · Renk</span>
+                        </div>
+                        <div class="proj-title">renkle</div>
+                        <div class="proj-desc">Günlük renk bulmacaları ve mini oyunlar: günün rengini tahmin et, renkleri
+                            karşılaştır, paleti tamamla ve renk odaklı keşif modları.</div>
+                        <div class="proj-badges">
+                            <span class="badge">Günlük görev</span>
+                            <span class="badge">Renk</span>
+                            <span class="badge">Responsive</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
                     </div>
-                    <div class="project-name" data-i18n="p9_name">CodeGrid Tools</div>
-                    <p class="project-desc" data-i18n="p9_desc">PDF, görsel, medya, veri, QR ve metin odaklı ücretsiz
-                        online araç platformu. Tüm işlemler tarayıcıda çalışır ve dosyalar sunucuya yüklenmeden güvenli
-                        şekilde işlenir.</p>
                 </a>
 
-                <div class="project-card project-card-soon">
-                    <div class="project-icon"><span style="font-weight:700;color:var(--muted);">+</span></div>
-                    <div class="project-name" data-i18n="p5_name">yakında<span class="repo-soon-cursor">_</span></div>
-                    <p class="project-desc" data-i18n="p5_desc">Yeni bir proje kartı çok yakında burada olacak.</p>
+                <a href="https://bullsburger.xyz/" target="_blank" rel="noopener" class="proj-card fade-in">
+                    <div class="proj-card-top">
+                        <img src="sitepics/bullsburger.avif" alt="Bulls Burger" class="proj-thumb" loading="lazy" />
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-meta">
+                            <img src="siteicons/bullsburger.ico" alt="" class="proj-favicon" />
+                            <span class="proj-tag-label">Restaurant · Brand</span>
+                        </div>
+                        <div class="proj-title" data-i18n="p4_name">Bulls Burger</div>
+                        <div class="proj-desc" data-i18n="p4_desc">Smash burger odaklı restoran markası web sitesi.
+                            Menü, şubeler, hikâye ve iletişim alanlarıyla marka deneyimini dijitale taşıyor.</div>
+                        <div class="proj-badges">
+                            <span class="badge">Restaurant</span>
+                            <span class="badge">UI/UX</span>
+                            <span class="badge">Responsive</span>
+                        </div>
+                        <div class="proj-link">↗ Demo</div>
+                    </div>
+                </a>
+
+                <div class="proj-card proj-card-soon fade-in">
+                    <div class="proj-soon-body">
+                        <div class="proj-soon-plus">+</div>
+                        <div class="proj-soon-title" data-i18n="p5_name">yakında<span class="soon-cursor">_</span></div>
+                        <div class="proj-soon-desc" data-i18n="p5_desc">Yeni bir proje kartı çok yakında burada olacak.
+                        </div>
+                    </div>
                 </div>
+
+                <div class="proj-card proj-card-soon fade-in">
+                    <div class="proj-soon-body">
+                        <div class="proj-soon-plus">+</div>
+                        <div class="proj-soon-title" data-i18n="p5_name">yakında<span class="soon-cursor">_</span></div>
+                        <div class="proj-soon-desc" data-i18n="p5_desc">Yeni bir proje kartı çok yakında burada olacak.
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="projects-more" style="margin-top:2rem;">
-                <a href="index.html" class="btn btn-ghost" data-i18n="proj_back">← Ana sayfaya dön</a>
+            <div class="proj-back fade-in">
+                <a href="index.html" class="btn-ghost" data-i18n="proj_back">← Ana sayfaya dön</a>
             </div>
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <a href="index.html#hero" class="footer-logo">Code<span>Grid</span></a>
+                <p data-i18n="footer_desc">İstanbul merkezli, genç ve tutkulu bir yazılım girişimi. Web, mobil, SEO ve
+                    tasarım alanlarında end-to-end çözümler sunuyoruz.</p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title" data-i18n="footer_nav_title">Hızlı Linkler</div>
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav_about">Hakkımızda</a></li>
+                    <li><a href="projects.html" data-i18n="nav_projects">Projeler</a></li>
+                    <li><a href="index.html#skills" data-i18n="nav_services">Hizmetler</a></li>
+                    <li><a href="index.html#contact" data-i18n="nav_contact">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title" data-i18n="footer_svc_title">Hizmetler</div>
+                <ul>
+                    <li><a href="index.html#skills">React / Next.js</a></li>
+                    <li><a href="index.html#skills">Node.js / API</a></li>
+                    <li><a href="index.html#skills" data-i18n="svc_mob">Mobil Uygulama</a></li>
+                    <li><a href="index.html#skills" data-i18n="svc_uiux">UI / UX Tasarımı</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title" data-i18n="contact_tag">İletişim</div>
+                <ul>
+                    <li>İstanbul, Türkiye</li>
+                    <li><a href="mailto:codegridteknoloji@gmail.com">codegridteknoloji@gmail.com</a></li>
+                    <li data-i18n="footer_hours">Pzt–Cum, 09:00–18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <span data-i18n="footer_copy">© 2025 CodeGrid — Tüm hakları saklıdır.</span>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
-    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/03/07/12/20260307120211-QLONTAR7.js" defer></script>
+    <!-- Botpress geçici kapalı — tekrar açmak için inject.js ve bpcontent script’lerini ekleyin -->
 </body>
+
 </html>
