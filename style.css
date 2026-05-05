@@ -79,13 +79,6 @@
     align-items: center;
     gap: 12px;
   }
-  .lang-toggle {
-    font-size: 12px; font-weight: 700; color: var(--gray-400);
-    letter-spacing: 0.5px; padding: 4px 8px;
-    border: 1px solid var(--gray-200);
-    transition: all var(--transition);
-  }
-  .lang-toggle:hover { color: var(--orange); border-color: var(--orange); }
   .nav-cta {
     font-family: var(--font-body);
     font-size: 13px; font-weight: 700;
@@ -329,13 +322,85 @@
 
   /* ===================== HOW (reserved) ===================== */
   .how {
-    min-height: 100vh;
     display: flex;
     align-items: center;
     background: var(--black);
-    padding: 72px 0;
+    padding: calc(72px + 48px) 0;
     border-bottom: var(--border-dark);
     box-sizing: border-box;
+    scroll-margin-top: calc(var(--nav-h) / 2);
+  }
+
+  .how .section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  /* ===================== PROCESS (simple list) ===================== */
+  .process-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .process-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    align-items: start;
+  }
+
+  .process-ico {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: var(--orange);
+    flex: 0 0 auto;
+  }
+
+  .process-ico svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .how .step-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0 0 12px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: -0.3px;
+    color: var(--white);
+    font-weight: 900;
+  }
+
+  .how .step-desc {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .how .process-verb {
+    color: var(--orange);
+    font-weight: 800;
+  }
+
+  .how .badge {
+    border: var(--border-dark);
+    color: #999;
+  }
+
+  @media (max-width: 640px) {
+    .how { padding: calc(56px + 48px) 0; }
+    .process-list { gap: 14px; }
   }
 
   /* ===================== GITHUB (reserved) ===================== */
@@ -354,9 +419,9 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: var(--black);
+    background: var(--white);
     padding: 72px 0;
-    border-bottom: var(--border-dark);
+    border-bottom: 1.5px solid var(--black);
     box-sizing: border-box;
   }
 
@@ -365,16 +430,18 @@
     font-size: clamp(36px, 4vw, 52px);
     font-weight: 900;
     letter-spacing: -1.5px;
-    color: var(--white);
-    margin-bottom: 32px;
+    color: var(--black);
+    margin-bottom: 48px;
   }
 
   .faq-list {
-    border: var(--border-dark);
+    border: 1.5px solid var(--black);
+    min-height: auto;
+    padding: 0;
   }
 
   .faq-item {
-    border-bottom: var(--border-dark);
+    border-bottom: 1px solid var(--gray-200);
   }
 
   .faq-item:last-child {
@@ -393,14 +460,14 @@
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    color: var(--white);
+    color: var(--black);
     text-align: left;
     gap: 16px;
     transition: background 0.2s ease;
   }
 
   .faq-q:hover {
-    background: rgba(255, 85, 0, 0.06);
+    background: rgba(255, 85, 0, 0.05);
   }
 
   .faq-q[aria-expanded="true"] {
@@ -431,7 +498,7 @@
 
   .faq-a p {
     font-size: 14px;
-    color: #999;
+    color: var(--gray-600);
     line-height: 1.75;
     border-left: 2px solid var(--orange);
     padding-left: 16px;
@@ -442,20 +509,20 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: var(--white);
+    background: var(--black);
     padding: 72px 0;
-    border-bottom: 1.5px solid var(--black);
+    border-bottom: var(--border-dark);
     box-sizing: border-box;
   }
   .contact h2 {
     font-family: var(--font-display);
     font-size: clamp(36px, 4vw, 52px);
     font-weight: 900; letter-spacing: -1.5px;
-    color: var(--black);
+    color: var(--white);
     margin-bottom: 8px;
   }
   .contact .section-sub {
-    color: var(--gray-600);
+    color: var(--gray-400);
     margin-bottom: 40px;
   }
   .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; }
@@ -500,11 +567,11 @@
 
   .contact-item {
     padding: 16px 0;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   }
 
   .contact-available + .contact-item {
-    border-top: 1px solid var(--gray-200);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
   }
 
   .contact-item label {
@@ -520,7 +587,7 @@
   .contact-item span,
   .contact-item a {
     font-size: 15px;
-    color: var(--black);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .contact-mail:hover {
@@ -529,7 +596,7 @@
 
   .contact-divider {
     border: none;
-    border-top: 1px solid var(--gray-200);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
     margin: 20px 0;
   }
 
@@ -574,23 +641,23 @@
 
   .contact-response {
     font-size: 12px;
-    color: var(--gray-400);
+    color: rgba(255, 255, 255, 0.60);
     padding-top: 16px;
-    border-top: 1px solid var(--gray-200);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
   }
 
   .contact-response strong {
-    color: var(--gray-600);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .contact-form { display: flex; flex-direction: column; gap: 12px; }
   .contact-form input,
   .contact-form textarea {
-    background: var(--white);
-    border: 1.5px solid var(--gray-200);
+    background: rgba(255, 255, 255, 0.02);
+    border: var(--border-dark);
     padding: 14px 16px;
     font-size: 14px;
-    color: var(--black);
+    color: var(--white);
     width: 100%;
     transition: border-color var(--transition);
     outline: none;
@@ -601,7 +668,7 @@
   }
   .contact-form input::placeholder,
   .contact-form textarea::placeholder {
-    color: var(--gray-400);
+    color: rgba(255, 255, 255, 0.45);
   }
   .contact-form textarea {
     resize: vertical;
@@ -621,37 +688,60 @@
   .contact-success {
     display: none; margin-top: 40px; padding: 32px;
     border: var(--border-orange); text-align: center;
-    background: var(--gray-100);
+    background: rgba(255, 255, 255, 0.03);
   }
   .contact-success.show { display: block; }
   .success-icon { font-size: 32px; color: var(--orange); margin-bottom: 12px; }
   .contact-success h3 { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
-  .contact-success p { font-size: 14px; color: var(--gray-600); }
+  .contact-success h3 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .contact-success p { font-size: 14px; color: rgba(255, 255, 255, 0.70); }
   
   /* ===================== FOOTER ===================== */
-  .footer { background: var(--black-deep); }
+  .footer { background: var(--white); border-top: 1.5px solid var(--black); }
   .footer-inner {
     padding: 64px 40px;
     display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid var(--gray-200);
   }
   .footer-logo {
     font-family: var(--font-display);
-    font-size: 22px; font-weight: 900; color: var(--white);
+    font-size: 22px; font-weight: 900; color: var(--black);
     display: block; margin-bottom: 14px;
   }
   .footer-logo span { color: var(--orange); }
-  .footer-brand p { font-size: 13px; color: #999; line-height: 1.7; max-width: 220px; }
+  .footer-brand p { font-size: 13px; color: var(--gray-600); line-height: 1.7; max-width: 220px; }
   .footer-col-title {
     font-size: 11px; font-weight: 700; letter-spacing: 2px;
     color: var(--orange); text-transform: uppercase; margin-bottom: 16px;
   }
   .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-  .footer-col ul li { font-size: 13px; color: #888; }
-  .footer-col ul li a { color: #888; transition: color var(--transition); }
-  .footer-col ul li a:hover { color: var(--white); }
+  .footer-col ul li { font-size: 13px; color: var(--gray-600); }
+  .footer-col ul li a { color: var(--gray-600); transition: color var(--transition); }
+  .footer-col ul li a:hover { color: var(--orange); }
   .footer-bottom { padding: 20px 40px; }
-  .footer-bottom span { font-size: 12px; color: #666; }
+  .footer-bottom span { font-size: 12px; color: var(--gray-600); }
+
+  .footer.footer-dark {
+    background: var(--black-deep);
+    border-top: 1px solid #1a1a1a;
+  }
+  .footer.footer-dark .footer-inner {
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .footer.footer-dark .footer-logo {
+    color: var(--white);
+  }
+  .footer.footer-dark .footer-brand p {
+    color: #999;
+  }
+  .footer.footer-dark .footer-col ul li,
+  .footer.footer-dark .footer-col ul li a,
+  .footer.footer-dark .footer-bottom span {
+    color: #888;
+  }
+  .footer.footer-dark .footer-col ul li a:hover {
+    color: var(--white);
+  }
   
   /* ===================== PROJECTS PAGE ===================== */
   .page-hero {
@@ -706,6 +796,16 @@
   /* ===================== ANIMATIONS ===================== */
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
   
   /* ===================== RESPONSIVE ===================== */
   @media (max-width: 900px) {

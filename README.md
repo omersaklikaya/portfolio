@@ -1,11 +1,11 @@
 # CodeGrid — Portfolio
 
-A static, bilingual (Turkish / English) marketing site for **CodeGrid**: services, featured projects, GitHub highlights, and a contact form. A dedicated **[projects.html](projects.html)** page lists the full project catalog.
+A static, Turkish marketing site for **CodeGrid**: services, featured projects, and a contact form. A dedicated **[projects.html](projects.html)** page lists the full project catalog.
 
 ## Tech stack
 
 - **HTML**, **CSS**, **JavaScript** (no build step)
-- **i18n** via `data-i18n` keys and `script.js` translation maps
+- (No i18n) Single-language (Turkish) site
 - **Botpress** webchat (loaded on the main site and projects page)
 - **Contact API**: [Resend](https://resend.com) for outbound email
 
@@ -14,9 +14,9 @@ A static, bilingual (Turkish / English) marketing site for **CodeGrid**: service
 | Path | Purpose |
 |------|---------|
 | `index.html` | Landing page (hero, about, featured projects, services, GitHub, contact) |
-| `projects.html` | Full project grid + shared navbar / language switcher |
+| `projects.html` | Full project grid + shared navbar |
 | `style.css` | Global styles |
-| `script.js` | i18n, navigation, scroll, particles, contact form `fetch` |
+| `script.js` | navigation, scroll, contact form `fetch` |
 | `sitepics/` | Project preview images (`.avif`) |
 | `siteicons/` | Per-project favicons (`.ico`) for cards |
 | `favicon.ico` | Site tab icon |

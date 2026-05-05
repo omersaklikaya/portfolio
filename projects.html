@@ -34,8 +34,8 @@
             letter-spacing: -1.5px;
             color: var(--black);
             line-height: 1.0;
-            margin-bottom: 6px;
-            text-align: center;
+            margin-bottom: 32px;
+            text-align: left;
         }
 
         .projects-page-section .page-sub {
@@ -170,34 +170,34 @@
             background: var(--gray-100) !important;
         }
 
-        .proj-soon-body {
+        .proj-grid-full .proj-card-soon {
+            background: var(--gray-100) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .soon-center {
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 180px;
+            gap: 10px;
             padding: 24px 18px;
         }
 
-        .proj-soon-plus {
-            font-size: 40px;
-            font-weight: 900;
-            color: var(--gray-200);
-            line-height: 1;
-            margin-bottom: 10px;
+        .soon-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--gray-400);
         }
 
-        .proj-soon-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--gray-400);
-            margin-bottom: 5px;
-        }
-
-        .proj-soon-desc {
-            font-size: 12px;
-            color: var(--gray-400);
-            line-height: 1.5;
+        .soon-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
         }
 
         .soon-cursor {
@@ -246,11 +246,11 @@
         <nav class="nav-links">
             <a href="index.html#about" data-i18n="nav_about">Hakkımızda</a>
             <a href="index.html#projects" data-i18n="nav_projects">Projeler</a>
+            <a href="index.html#process">Süreç</a>
             <a href="index.html#skills" data-i18n="nav_services">SSS</a>
             <a href="index.html#contact" data-i18n="nav_contact">İletişim</a>
         </nav>
         <div class="nav-right">
-            <button type="button" class="lang-toggle" id="langToggle">TR / EN</button>
             <a href="index.html#contact" class="nav-cta" data-i18n="nav_cta">Bize Ulaşın →</a>
             <button class="nav-burger" id="navBurger" aria-label="Menüyü aç">
                 <span></span><span></span><span></span>
@@ -262,6 +262,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html#about" class="mm-link" data-i18n="nav_about">Hakkımızda</a>
         <a href="index.html#projects" class="mm-link" data-i18n="nav_projects">Projeler</a>
+        <a href="index.html#process" class="mm-link">Süreç</a>
         <a href="index.html#skills" class="mm-link" data-i18n="nav_services">SSS</a>
         <a href="index.html#contact" class="mm-link" data-i18n="nav_contact">İletişim</a>
         <a href="index.html#contact" class="mm-cta" data-i18n="nav_cta">Bize Ulaşın →</a>
@@ -271,12 +272,10 @@
     <section class="projects-page-section">
         <div class="container">
             <h1 data-i18n="proj_all_title">Tüm Projeler</h1>
-            <p class="page-sub" data-i18n="proj_all_sub">Geliştirdiğimiz tüm proje ve ürünleri bu sayfada
-                bulabilirsiniz.</p>
 
             <div class="proj-grid-full">
 
-                <a href="https://toolboxapp-beta.vercel.app" target="_blank" rel="noopener" class="proj-card fade-in">
+                <a href="https://toolboxapp-beta.vercel.app" target="_blank" rel="noopener" class="proj-card fade-in-up">
                     <div class="proj-card-top">
                         <img src="sitepics/codegrid.avif" alt="CodeGrid-Tools" class="proj-thumb" loading="lazy" />
                     </div>
@@ -298,7 +297,7 @@
                     </div>
                 </a>
 
-                <a href="https://masteremlak.vercel.app/" target="_blank" rel="noopener" class="proj-card fade-in">
+                <a href="https://masteremlak.vercel.app/" target="_blank" rel="noopener" class="proj-card fade-in-up">
                     <div class="proj-card-top">
                         <img src="sitepics/masteremlak.avif" alt="Master Emlak" class="proj-thumb" loading="lazy" />
                     </div>
@@ -320,7 +319,7 @@
                     </div>
                 </a>
 
-                <a href="https://renkle.vercel.app/" target="_blank" rel="noopener" class="proj-card fade-in">
+                <a href="https://renkle.vercel.app/" target="_blank" rel="noopener" class="proj-card fade-in-up">
                     <div class="proj-card-top">
                         <img src="sitepics/renkle.avif" alt="renkle — günlük renk bulmacaları" class="proj-thumb"
                             loading="lazy" />
@@ -342,7 +341,7 @@
                     </div>
                 </a>
 
-                <a href="https://bullsburger.xyz/" target="_blank" rel="noopener" class="proj-card fade-in">
+                <a href="https://bullsburger.xyz/" target="_blank" rel="noopener" class="proj-card fade-in-up">
                     <div class="proj-card-top">
                         <img src="sitepics/bullsburger.avif" alt="Bulls Burger" class="proj-thumb" loading="lazy" />
                     </div>
@@ -363,34 +362,30 @@
                     </div>
                 </a>
 
-                <div class="proj-card proj-card-soon fade-in">
-                    <div class="proj-soon-body">
-                        <div class="proj-soon-plus">+</div>
-                        <div class="proj-soon-title" data-i18n="p5_name">yakında<span class="soon-cursor">_</span></div>
-                        <div class="proj-soon-desc" data-i18n="p5_desc">Yeni bir proje kartı çok yakında burada olacak.
-                        </div>
+                <div class="proj-card proj-card-soon fade-in-up">
+                    <div class="soon-center" aria-label="Yakında">
+                        <span class="soon-dot" aria-hidden="true"></span>
+                        <div class="soon-text">Yakında</div>
                     </div>
                 </div>
 
-                <div class="proj-card proj-card-soon fade-in">
-                    <div class="proj-soon-body">
-                        <div class="proj-soon-plus">+</div>
-                        <div class="proj-soon-title" data-i18n="p5_name">yakında<span class="soon-cursor">_</span></div>
-                        <div class="proj-soon-desc" data-i18n="p5_desc">Yeni bir proje kartı çok yakında burada olacak.
-                        </div>
+                <div class="proj-card proj-card-soon fade-in-up">
+                    <div class="soon-center" aria-label="Yakında">
+                        <span class="soon-dot" aria-hidden="true"></span>
+                        <div class="soon-text">Yakında</div>
                     </div>
                 </div>
 
             </div>
 
-            <div class="proj-back fade-in">
+            <div class="proj-back fade-in-up">
                 <a href="index.html" class="btn-ghost" data-i18n="proj_back">← Ana sayfaya dön</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer footer-dark">
         <div class="container footer-inner">
             <div class="footer-brand">
                 <a href="index.html#hero" class="footer-logo">Code<span>Grid</span></a>
