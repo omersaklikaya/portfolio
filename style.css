@@ -831,4 +831,18 @@
     .footer-inner { padding: 48px 20px; grid-template-columns: 1fr; }
     .footer-bottom { padding: 16px 20px; }
     .hero-title { font-size: 52px; }
+
+    /* Mobilde tüm scroll animasyonlarını kapat */
+    .fade-in,
+    .fade-in-up {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      transition-delay: 0ms !important;
+    }
+    .fade-in.visible,
+    .fade-in-up.is-visible {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
