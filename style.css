@@ -39,7 +39,7 @@
   
   /* ===================== NAV ===================== */
   .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     height: var(--nav-h);
     background: var(--white);
     border-bottom: var(--border-light);
@@ -216,7 +216,8 @@
     border-bottom: var(--border-dark);
     box-sizing: border-box;
   }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 64px; align-items: start; }
+  .about-text { min-width: 480px !important; }
   .about-text h2 {
     font-family: var(--font-display);
     font-size: clamp(36px, 4vw, 52px);
@@ -240,6 +241,246 @@
   }
   .step-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
   .step-desc { font-size: 13px; color: #777; line-height: 1.6; }
+
+  /* ABOUT — map (turkey.svg inline) */
+  .about-map {
+    border: none;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .about-map-wrap {
+    position: relative;
+  }
+
+  .about-map-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    position: relative;
+    margin-top: 20px !important;
+    margin-left: 0 !important;
+    width: 600px !important;
+    max-width: none !important;
+    height: auto;
+  }
+
+  .about-map-svg svg {
+    width: 600px !important;
+    height: auto;
+    max-width: none !important;
+    background: transparent;
+    display: block;
+  }
+
+  .about-map-svg svg path {
+    fill: none !important;
+    stroke: var(--orange) !important;
+    stroke-width: 1.5 !important;
+  }
+
+  .about-map-istanbul {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .about-map-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex: 0 0 auto;
+  }
+
+  .about-map-label {
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  .about-map-arrow {
+    position: absolute;
+    left: 14%;
+    top: 18%;
+    width: 140px;
+    height: 90px;
+    transform: translate(calc(-100% - 8px), calc(-100% - 8px));
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .about-map-arrow line {
+    stroke: var(--orange);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 3;
+    fill: none;
+  }
+
+  @keyframes istanbulPulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+  }
+
+  @keyframes liqBeat {
+    0%, 100% { transform: scale(1); }
+    30% { transform: scale(0.7); }
+    60% { transform: scale(1.1); }
+  }
+
+  @keyframes liqExpand {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    /* GENERAL (no horizontal overflow on 390px) */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: hidden; border: none; outline: none; }
+    * { outline: none; }
+
+    .container { padding: 0 20px; max-width: 100%; }
+
+    section { padding: 60px 20px; }
+    .about {
+      padding: 60px 20px;
+      overflow: hidden;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* keep responsive elements inside viewport */
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+
+    /* TYPE */
+    h1 { font-size: clamp(2rem, 8vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+    p { font-size: max(14px, 1rem); }
+
+    /* NAVBAR */
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-burger { display: flex; }
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      height: auto;
+      max-height: 70vh;
+      overflow: auto;
+      width: 100%;
+      background: var(--white);
+      z-index: 999;
+      padding: 0;
+    }
+    .mm-link { padding: 16px 20px; text-align: center; }
+    .mm-cta { padding: 16px 20px; text-align: center; margin-top: 8px; }
+
+    /* HERO */
+    .hero-inner { padding: 0 24px; gap: 24px; max-width: 100%; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .hero-btns a { width: 100%; max-width: 100%; text-align: center; }
+
+    /* GRID/FLEX — stack everything */
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+
+    /* ABOUT MAP */
+    /* critical: override desktop min-width to prevent overflow */
+    .about-grid,
+    .about-grid > * { min-width: 0; }
+
+    .about-text {
+      min-width: 0 !important;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    #about .container {
+      max-width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .about p,
+    .about h1,
+    .about h2,
+    .about span,
+    .about strong {
+      word-break: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
+    }
+
+    .about-map-svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow: hidden;
+    }
+
+    .about-map-svg svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+
+    /* ABOUT MAP — brighter stroke on mobile */
+    .about-map-svg svg path {
+      stroke: #FF5520 !important;
+      stroke-width: 2px !important;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .about-map-svg {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  /* Nest Hub (1024x600) */
+  @media (width: 1024px) and (height: 600px) {
+    .hero { min-height: auto; padding-top: var(--nav-h); padding-bottom: 32px; }
+    .hero-inner { padding: 0 28px; gap: 18px; }
+    .hero-title { font-size: clamp(44px, 5vw, 64px); }
+    .hero-sub { max-width: 560px; }
+
+    .about, .projects, .how, .faq, .contact { min-height: auto; padding: 56px 0; }
+    .section-header { margin-bottom: 28px; }
+
+    /* fix #about map overflow on 1024x600 */
+    .about-map-svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow: hidden;
+    }
+
+    .about-map-svg svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+
+    .mobile-menu { max-height: calc(100vh - var(--nav-h)); overflow: auto; }
+  }
   
   /* ===================== PROJECTS ===================== */
   .projects {

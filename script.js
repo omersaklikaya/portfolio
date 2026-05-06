@@ -163,21 +163,91 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    document.querySelectorAll('.faq-q').forEach(b => {
-      b.setAttribute('aria-expanded', 'false');
-      const pane = b.nextElementSibling;
-      if (pane) pane.classList.remove('open');
-      const icon = b.querySelector('.faq-icon');
-      if (icon) icon.textContent = '+';
-    });
-    if (!isOpen) {
-      btn.setAttribute('aria-expanded', 'true');
-      const pane = btn.nextElementSibling;
-      if (pane) pane.classList.add('open');
-      const icon = btn.querySelector('.faq-icon');
-      if (icon) icon.textContent = '\u00D7';
-    }
+    const nextState = !isOpen;
+    btn.setAttribute('aria-expanded', String(nextState));
+    const pane = btn.nextElementSibling;
+    if (pane) pane.classList.toggle('open', nextState);
+    const icon = btn.querySelector('.faq-icon');
+    if (icon) icon.textContent = nextState ? '-' : '+';
   });
 });
 
 /* i18n kaldırıldı — site yalnızca Türkçe */
+
+/* ─────────────────────────────────────────────
+   ABOUT — Turkey SVG (inline)
+───────────────────────────────────────────── */
+loadTurkeyMapSvg();
+
+function loadTurkeyMapSvg() {
+  const mount = document.getElementById('aboutTurkeySvg');
+  if (!mount) return;
+
+  fetch('turkey.svg')
+    .then(r => r.text())
+    .then(svgText => {
+      mount.innerHTML = svgText;
+
+      // overlay: Istanbul marker
+      mount.insertAdjacentHTML('beforeend', `
+<div class="istanbul-marker" style="
+  position: absolute;
+  left: 16.5%;
+  top: 14.7%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+">
+  <div style="
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    animation: liqExpand 1.2s cubic-bezier(0.4,0,0.6,1) infinite 0.15s;
+  "></div>
+  <div style="
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    animation: liqExpand 1.2s cubic-bezier(0.4,0,0.6,1) infinite;
+  "></div>
+  <div style="
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    animation: liqBeat 1.2s cubic-bezier(0.4,0,0.6,1) infinite;
+  "></div>
+</div>
+`);
+
+      const svg = mount.querySelector('svg');
+      if (!svg) return;
+
+      // crop for layout (hide bottom watermark text)
+      svg.setAttribute('viewBox', '0 0 1820 780');
+
+      // make responsive
+      svg.removeAttribute('width');
+      svg.removeAttribute('height');
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      svg.style.background = 'transparent';
+
+      // force strokes
+      svg.querySelectorAll('path').forEach(p => {
+        p.setAttribute('fill', 'none');
+        p.setAttribute('stroke', 'var(--orange)');
+        p.setAttribute('stroke-width', '1.5');
+      });
+
+      // safety: if there is any filled background rect
+      svg.querySelectorAll('rect').forEach(r => {
+        r.setAttribute('fill', 'none');
+        r.setAttribute('stroke', 'var(--orange)');
+        r.setAttribute('stroke-width', '1.5');
+      });
+    })
+    .catch(() => {
+      // ignore: map is decorative
+    });
+}
